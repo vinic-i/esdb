@@ -18,11 +18,11 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public Optional<Usuario> encontrarPorId(Long id) {
-        return usuarioRepository.findById(id);
+    public Usuario encontrarUsuarioPorId(Long id) {
+        return usuarioRepository.findById(id).get();
     }
 
-    public List<Usuario> encontrarTodos() {
+    public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
     }
 

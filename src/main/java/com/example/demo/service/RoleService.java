@@ -13,18 +13,23 @@ public class RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    // Encontrar todos os papéis
+    public Role criarRole(Role role) {
+        return roleRepository.save(role);
+    }
+
     public List<Role> encontrarTodos() {
         return roleRepository.findAll();
     }
 
-    // Encontrar um papel pelo ID
     public Role encontrarPorId(Long id) {
         return roleRepository.findById(id).orElse(null);
     }
 
-    // Encontrar um papel pelo nome
     public Role encontrarPorNome(String nome) {
         return roleRepository.findByNome(nome).orElse(null);
+    }
+
+    public void deleteRole(Long id) {
+        roleRepository.deleteById(id);
     }
 }
