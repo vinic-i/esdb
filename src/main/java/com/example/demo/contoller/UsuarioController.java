@@ -1,12 +1,17 @@
 package com.example.demo.contoller;
 
 import com.example.demo.entity.Usuario;
+import com.example.demo.forms.UsuarioDTO;
 import com.example.demo.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -16,9 +21,13 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
-        return ResponseEntity.ok(usuarioSalvo);
+    public ResponseEntity<?> criarUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO) {
+        try {
+            Usuario usuarioSalvo = usuarioService.salvarUsuario(usuarioDTO);
+            return ResponseEntity.ok(usuarioSalvo);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro ao cadastrar usuário.");
+        }
     }
 
     @GetMapping

@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.util.Set;
 
@@ -14,14 +15,13 @@ public class Role {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY) // Usando LAZY para evitar carregamento imediato
+    @JsonBackReference // Evita a referência cíclica
     private Set<Usuario> usuarios;
 
-    // Construtor padrão
     public Role() {
     }
 
-    // Construtor com parâmetros
     public Role(String nome) {
         this.nome = nome;
     }

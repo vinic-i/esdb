@@ -1,8 +1,14 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,18 +17,33 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotEmpty(message = "O nome é obrigatório.")
     private String nome;
+
+    @NotEmpty(message = "O email é obrigatório.")
+    @Email(message = "Formato de email inválido.")
     private String email;
+
+    @NotEmpty(message = "A senha é obrigatória.")
+    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres.")
     private String senha;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "usuario_roles",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonManagedReference
+    private Set<Role> roles = new HashSet<>();
 
-    private Set<Role> roles;
+    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
+    @JsonBackReference
+    private Set<Residencia> residencias = new HashSet<>();
+
+    @Column(name = "notificacoes", nullable = false)
+    private boolean notificacoes;
 
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao;
@@ -33,14 +54,17 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String senha, Set<Role> roles) {
+    public Usuario(String nome, String email, String senha, Set<Role> roles, Set<Residencia> residencias, boolean notificacoes) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.roles = roles;
+        this.residencias = residencias;
+        this.notificacoes = notificacoes;
         this.dataCriacao = LocalDateTime.now();
         this.dataAtualizacao = LocalDateTime.now();
     }
+
 
     public Long getId() {
         return id;
@@ -80,6 +104,22 @@ public class Usuario {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Residencia> getResidencias() {
+        return residencias;
+    }
+
+    public void setResidencias(Set<Residencia> residencias) {
+        this.residencias = residencias;
+    }
+
+    public boolean isNotificacoes() {
+        return notificacoes;
+    }
+
+    public void setNotificacoes(boolean notificacoes) {
+        this.notificacoes = notificacoes;
     }
 
     public LocalDateTime getDataCriacao() {
