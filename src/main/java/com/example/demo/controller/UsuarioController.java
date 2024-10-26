@@ -1,4 +1,4 @@
-package com.example.demo.contoller;
+package com.example.demo.controller;
 
 import com.example.demo.entity.Usuario;
 import com.example.demo.forms.UsuarioDTO;
@@ -6,12 +6,9 @@ import com.example.demo.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/usuarios")

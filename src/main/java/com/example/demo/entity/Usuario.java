@@ -43,7 +43,7 @@ public class Usuario {
     private Set<Residencia> residencias = new HashSet<>();
 
     @Column(name = "notificacoes", nullable = false)
-    private boolean notificacoes;
+    private Boolean notificacoes = false;
 
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao;
@@ -114,7 +114,7 @@ public class Usuario {
         this.residencias = residencias;
     }
 
-    public boolean isNotificacoes() {
+    public Boolean isNotificacoes() {
         return notificacoes;
     }
 

@@ -30,18 +30,26 @@ public class Espaco {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
-    public Espaco() {
-    }
+    @ManyToOne // Indica que muitos Espacos pertencem a um Condominio
+    @JoinColumn(name = "condominio_id", nullable = false)
+    private Condominio condominio;
 
-    public Espaco(String nome, String descricao, int capacidade) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.capacidade = capacidade;
-        this.disponibilidade = true; // Por padrão, o espaço é disponível
+    public Espaco() {
         this.dataRegistro = LocalDateTime.now();
         this.dataAtualizacao = LocalDateTime.now();
     }
 
+    public Espaco(String nome, String descricao, int capacidade, Condominio condominio) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.capacidade = capacidade;
+        this.disponibilidade = true;
+        this.dataRegistro = LocalDateTime.now();
+        this.dataAtualizacao = LocalDateTime.now();
+        this.condominio = condominio;
+    }
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -96,5 +104,13 @@ public class Espaco {
 
     public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
     }
 }
