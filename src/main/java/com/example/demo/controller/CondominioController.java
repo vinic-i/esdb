@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Condominio;
+import com.example.demo.entity.Espaco;
 import com.example.demo.forms.CondominioDTO;
 import com.example.demo.service.CondominioService;
 import jakarta.validation.Valid;
@@ -41,6 +42,13 @@ public class CondominioController {
     public ResponseEntity<Condominio> getCondominioById(@PathVariable Long id) {
         Optional<Condominio> condominio = condominioService.getCondominioById(id);
         return condominio.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    //Lista os espaços de um condomínio
+    @GetMapping("/{condominioId}/espacos")
+    public ResponseEntity<List<Espaco>> getEspacosByCondominioId(@PathVariable Long condominioId) {
+        List<Espaco> espacos = condominioService.getEspacosByCondominioId(condominioId);
+        return ResponseEntity.ok(espacos);
     }
 
     // Atualizar um condomínio

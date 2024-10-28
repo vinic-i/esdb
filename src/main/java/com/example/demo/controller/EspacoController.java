@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Condominio;
 import com.example.demo.entity.Espaco;
+import com.example.demo.forms.EspacoDTO;
 import com.example.demo.service.EspacoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +34,13 @@ public class EspacoController {
     }
 
     @PostMapping
-    public Espaco salvar(@RequestBody Espaco espaco) {
-        return espacoService.salvar(espaco);
+    public ResponseEntity<?> salvar(@RequestBody EspacoDTO espacoDTO) {
+        try {
+            Espaco newEspaco = espacoService.salvar(espacoDTO);
+            return ResponseEntity.ok(newEspaco);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

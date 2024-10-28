@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Condominio;
+import com.example.demo.entity.Espaco;
 import com.example.demo.entity.Usuario;
 import com.example.demo.forms.CondominioDTO;
 import com.example.demo.repository.CondominioRepository;
+import com.example.demo.repository.EspacoRepository;
 import com.example.demo.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,13 @@ public class CondominioService {
     private CondominioRepository condominioRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private EspacoRepository espacoRepository;
 
-    // Criar um novo condomínio
     public Condominio createCondominio(CondominioDTO condominioDTO) {
-        // Buscando o usuário pelo id
         Usuario owner = usuarioRepository.findById(condominioDTO.getOwnerId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + condominioDTO.getOwnerId()));
 
-        // Criando a entidade Condominio
         Condominio newCondominio = new Condominio();
         newCondominio.setNome(condominioDTO.getNome());
         newCondominio.setEndereco(condominioDTO.getEndereco());
@@ -57,5 +58,9 @@ public class CondominioService {
     // Deletar um condomínio
     public void deleteCondominio(Long id) {
         condominioRepository.deleteById(id);
+    }
+
+    public List<Espaco> getEspacosByCondominioId(Long condominioId) {
+        return espacoRepository.findByCondominioId(condominioId);
     }
 }

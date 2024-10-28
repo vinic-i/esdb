@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -32,6 +33,7 @@ public class Espaco {
 
     @ManyToOne // Indica que muitos Espacos pertencem a um Condominio
     @JoinColumn(name = "condominio_id", nullable = false)
+    @JsonBackReference // Indica que este é o lado inverso da referência
     private Condominio condominio;
 
     public Espaco() {

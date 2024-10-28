@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -36,6 +37,7 @@ public class Condominio {
     private Set<Residencia> residencias = new HashSet<>();
 
     @OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<Espaco> espacos = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
