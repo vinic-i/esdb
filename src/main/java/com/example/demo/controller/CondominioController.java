@@ -52,10 +52,14 @@ public class CondominioController {
     }
 
     // Atualizar um condomínio
-    @PutMapping("/{id}")
-    public ResponseEntity<Condominio> updateCondominio(@PathVariable Long id, @RequestBody Condominio updatedCondominio) {
-        Condominio condominio = condominioService.updateCondominio(id, updatedCondominio);
-        return ResponseEntity.ok(condominio);
+    @PutMapping("/{id}/{idUser}")
+    public ResponseEntity<?> updateCondominio(@PathVariable Long id, @RequestBody CondominioDTO updatedCondominio, @PathVariable Long idUser) {
+        try {
+            Condominio newCondominio = condominioService.updateCondominio(id, updatedCondominio, idUser);
+            return ResponseEntity.ok(newCondominio);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     // Deletar um condomínio

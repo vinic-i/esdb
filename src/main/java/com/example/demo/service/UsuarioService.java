@@ -41,6 +41,17 @@ public class UsuarioService {
         return usuarioRepository.save(novoUsuario);
     }
 
+    public List<Usuario> buscarUsuarios(String nome, String email) {
+        if (nome != null && email != null) {
+            return usuarioRepository.findByNomeAndEmail(nome, email);
+        } else if (nome != null) {
+            return usuarioRepository.findByNome(nome);
+        } else if (email != null) {
+            return usuarioRepository.findByEmail(email);
+        } else {
+            return listarTodos(); // Retorna todos se nenhum filtro for fornecido
+        }
+    }
 
     public Usuario encontrarUsuarioPorId(Long id) {
         return usuarioRepository.findById(id).get();
@@ -62,8 +73,5 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public Optional<Usuario> encontrarPorEmail(String email) {
-        return usuarioRepository.findByEmail(email);
-    }
 
 }

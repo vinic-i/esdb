@@ -1,7 +1,10 @@
 package com.example.demo.forms;
 
+import com.example.demo.entity.Residencia;
+import com.example.demo.entity.Usuario;
 import jakarta.validation.constraints.NotEmpty;
 
+import java.util.List;
 import java.util.Set;
 
 public class CondominioDTO {
@@ -16,6 +19,8 @@ public class CondominioDTO {
     private String apartamento;
     private String descricao;
     private Long ownerId;
+    private List<Long> residenciaIds;
+    private List<Long> administradoreIds;
 
     // Getters e Setters
 
@@ -58,5 +63,17 @@ public class CondominioDTO {
     }
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
+    }
+    public List<Long> getResidenciaIds() {
+        return residenciaIds;
+    }
+    public void setResidenciaIds(List<Long> residenciaIds) {
+        this.residenciaIds = residenciaIds;
+    }
+    public List<Long> getAdministradoreIds() {
+        return administradoreIds;
+    }
+    public void setAdministradoreIds(List<Long> administradoreIds) {
+        this.administradoreIds = administradoreIds;
     }
 }

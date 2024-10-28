@@ -2,15 +2,18 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Condominio;
 import com.example.demo.entity.Espaco;
+import com.example.demo.entity.Residencia;
 import com.example.demo.entity.Usuario;
 import com.example.demo.forms.CondominioDTO;
 import com.example.demo.repository.CondominioRepository;
 import com.example.demo.repository.EspacoRepository;
+import com.example.demo.repository.ResidenciaRepository;
 import com.example.demo.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +26,8 @@ public class CondominioService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private EspacoRepository espacoRepository;
+    @Autowired
+    private ResidenciaRepository residenciaRepository;
 
     public Condominio createCondominio(CondominioDTO condominioDTO) {
         Usuario owner = usuarioRepository.findById(condominioDTO.getOwnerId())
@@ -36,7 +41,44 @@ public class CondominioService {
         newCondominio.setDescricao(condominioDTO.getDescricao());
         newCondominio.setOwner(owner); // Aqui setamos o objeto de usuário
 
+        List<Residencia> residencias = residenciaRepository.findAllById(condominioDTO.getResidenciaIds());
+        newCondominio.setResidencias(new HashSet<>(residencias));
+        List<Usuario> administradores = usuarioRepository.findAllById(condominioDTO.getAdministradoreIds());
+        newCondominio.setAdministradores(new HashSet<>(administradores));
+
         return condominioRepository.save(newCondominio); // Salvando o novo condomínio
+    }
+
+    // Atualizar um condomínio
+    public Condominio updateCondominio(Long id, CondominioDTO condominioDTO, Long userId) {
+        // Buscar o condomínio existente pelo ID
+        Condominio existingCondominio = condominioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Condomínio não encontrado com o id: " + id));
+
+        // Verificar se o usuário é o owner ou um dos administradores
+        if (!existingCondominio.getOwner().getId().equals(userId) &&
+                existingCondominio.getAdministradores().stream().noneMatch(admin -> admin.getId().equals(userId))) {
+            throw new RuntimeException("Usuário não possui permissão para alterar este condomínio");
+        }
+
+        // Atualizar os dados do condomínio com as informações do DTO
+        existingCondominio.setNome(condominioDTO.getNome());
+        existingCondominio.setEndereco(condominioDTO.getEndereco());
+        existingCondominio.setBloco(condominioDTO.getBloco());
+        existingCondominio.setApartamento(condominioDTO.getApartamento());
+        existingCondominio.setDescricao(condominioDTO.getDescricao());
+
+        // Atualizar o proprietário se necessário
+        Usuario owner = usuarioRepository.findById(condominioDTO.getOwnerId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + condominioDTO.getOwnerId()));
+        existingCondominio.setOwner(owner);
+
+        // Atualizar as residências associadas ao condomínio
+        List<Residencia> residencias = residenciaRepository.findAllById(condominioDTO.getResidenciaIds());
+        existingCondominio.setResidencias(new HashSet<>(residencias)); // Substitui a lista atual
+
+        // Salvar as mudanças no banco de dados
+        return condominioRepository.save(existingCondominio);
     }
 
     // Listar todos os condomínios
@@ -49,11 +91,7 @@ public class CondominioService {
         return condominioRepository.findById(id);
     }
 
-    // Atualizar um condomínio
-    public Condominio updateCondominio(Long id, Condominio updatedCondominio) {
-        updatedCondominio.setId(id);
-        return condominioRepository.save(updatedCondominio);
-    }
+
 
     // Deletar um condomínio
     public void deleteCondominio(Long id) {

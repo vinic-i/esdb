@@ -27,6 +27,14 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Usuario>> buscarUsuarios(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String email) {
+        List<Usuario> usuarios = usuarioService.buscarUsuarios(nome, email);
+        return ResponseEntity.ok(usuarios);
+    }
+
     @GetMapping
     public ResponseEntity<List<Usuario>> listarUsuarios() {
         List<Usuario> usuarios = usuarioService.listarTodos();

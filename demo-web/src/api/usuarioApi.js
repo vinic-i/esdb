@@ -21,3 +21,11 @@ export const deleteUsuario = (id) => {
 export const atualizarUsuario = (id, usuario) => {
     return axios.put(`${API_URL}/update/${id}`, usuario);
 }
+
+export const searchUsuarios = (nome, email) => {
+    const params = {};
+    if (nome) params.nome = nome;
+    if (email) params.email = email;
+
+    return axios.get(`${API_URL}/search`, { params });
+};
