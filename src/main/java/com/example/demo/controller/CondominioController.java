@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Condominio;
+import com.example.demo.forms.CondominioDTO;
 import com.example.demo.service.CondominioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +20,13 @@ public class CondominioController {
 
     // Criar um novo condomínio
     @PostMapping
-    public ResponseEntity<Condominio> createCondominio(@RequestBody Condominio condominio) {
-        Condominio newCondominio = condominioService.createCondominio(condominio);
-        return ResponseEntity.ok(newCondominio);
+    public ResponseEntity<?> createCondominio(@Valid @RequestBody CondominioDTO condominioDTO) {
+        try {
+            Condominio newCondominio = condominioService.createCondominio(condominioDTO);
+            return ResponseEntity.ok(newCondominio);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     // Listar todos os condomínios

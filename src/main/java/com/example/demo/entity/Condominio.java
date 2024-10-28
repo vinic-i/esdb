@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,9 @@ public class Condominio {
 
     @Column(name = "bloco")
     private String bloco;
+
+    @Column(name = "apartamento")
+    private String apartamento;
 
     @Column(name = "descricao")
     private String descricao;
@@ -45,10 +49,11 @@ public class Condominio {
     public Condominio() {
     }
 
-    public Condominio(String nome, String endereco, String bloco, String descricao, Usuario owner) {
+    public Condominio(String nome, String endereco, String bloco, String apartamento, String descricao, Usuario owner) {
         this.nome = nome;
         this.endereco = endereco;
         this.bloco = bloco;
+        this.apartamento = apartamento;
         this.descricao = descricao;
         this.owner = owner;
     }
@@ -83,6 +88,14 @@ public class Condominio {
 
     public void setBloco(String bloco) {
         this.bloco = bloco;
+    }
+
+    public String setApartamento() {
+        return apartamento;
+    }
+
+    public void setApartamento(String apartamento) {
+        this.apartamento = Condominio.this.apartamento;
     }
 
     public String getDescricao() {

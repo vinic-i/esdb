@@ -1,7 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Condominio;
+import com.example.demo.entity.Usuario;
+import com.example.demo.forms.CondominioDTO;
 import com.example.demo.repository.CondominioRepository;
+import com.example.demo.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +17,25 @@ public class CondominioService {
 
     @Autowired
     private CondominioRepository condominioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     // Criar um novo condomínio
-    public Condominio createCondominio(Condominio condominio) {
-        return condominioRepository.save(condominio);
+    public Condominio createCondominio(CondominioDTO condominioDTO) {
+        // Buscando o usuário pelo id
+        Usuario owner = usuarioRepository.findById(condominioDTO.getOwnerId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + condominioDTO.getOwnerId()));
+
+        // Criando a entidade Condominio
+        Condominio newCondominio = new Condominio();
+        newCondominio.setNome(condominioDTO.getNome());
+        newCondominio.setEndereco(condominioDTO.getEndereco());
+        newCondominio.setBloco(condominioDTO.getBloco());
+        newCondominio.setApartamento(condominioDTO.getApartamento());
+        newCondominio.setDescricao(condominioDTO.getDescricao());
+        newCondominio.setOwner(owner); // Aqui setamos o objeto de usuário
+
+        return condominioRepository.save(newCondominio); // Salvando o novo condomínio
     }
 
     // Listar todos os condomínios

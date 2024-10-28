@@ -23,7 +23,7 @@ public class UsuarioController {
             Usuario usuarioSalvo = usuarioService.salvarUsuario(usuarioDTO);
             return ResponseEntity.ok(usuarioSalvo);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Erro ao cadastrar usuário.");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
