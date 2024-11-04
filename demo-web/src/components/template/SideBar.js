@@ -1,46 +1,101 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import logo from "../../static/logo.svg"
+import {Link} from "react-router-dom";
+import logo from "../../static/logo.svg";
 
 const SideBar = () => {
     return (
-        <div className="bg-light border-rounded vh-100 my-3 rounded" style={{ width: '250px' }}>
-            <div className="sidebar-heading text-center py-4">
-                <Link to="/" className="navbar-brand">
-                    <img src={logo} alt="logo" className="img-fluid" style={{ height: '40px' }} />
-                    <span className="ms-2 font-weight-bold">Dashboard</span>
+        <aside
+            className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+            id="sidenav-main">
+            <div className="sidenav-header">
+                <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                   aria-hidden="true" id="iconSidenav"></i>
+                <Link to="/" className="navbar-brand m-0">
+                    <img src={logo} className="navbar-brand-img h-100" alt="main_logo"/>
+                    <span className="ms-1 font-weight-bold">Dashboard</span>
                 </Link>
             </div>
-            <div className="list-group list-group-flush">
-                <Link to="/agendamentos" className="list-group-item list-group-item-action">
-                    <i className="bi bi-calendar-check-fill me-2"></i> Agendamentos
-                </Link>
-                <Link to="/espacos" className="list-group-item list-group-item-action">
-                    <i className="bi bi-grid-fill me-2"></i> Espaços
-                </Link>
-                <Link to="/usuarios" className="list-group-item list-group-item-action">
-                    <i className="bi bi-person-fill me-2"></i> Cadastros de Usuários
-                </Link>
-                <Link to="/condominio" className="list-group-item list-group-item-action">
-                    <i className="bi bi-house-fill me-2"></i> Condomínio
-                </Link>
-                <Link to="/roles" className="list-group-item list-group-item-action">
-                    <i className="bi bi-shield-fill me-2"></i> Papéis
-                </Link>
-                <div className="sidebar-heading mt-3 px-3 text-uppercase text-muted small">
-                    Account Pages
-                </div>
-                <Link to="/perfil" className="list-group-item list-group-item-action">
-                    <i className="bi bi-person-circle me-2"></i> Perfil
-                </Link>
-                <Link to="/sign-in" className="list-group-item list-group-item-action">
-                    <i className="bi bi-box-arrow-in-right me-2"></i> Sign In
-                </Link>
-                <Link to="/sign-up" className="list-group-item list-group-item-action">
-                    <i className="bi bi-person-plus-fill me-2"></i> Sign Up
-                </Link>
+            <hr className="horizontal dark mt-0"/>
+            <div className="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <Link to="/agendamentos" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Agendamentos</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/espacos" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-collection text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Espaços</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/usuarios" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Cadastros de Usuários</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/condominio" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Condomínio</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/roles" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Papéis</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item mt-3">
+                        <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/perfil" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Perfil</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/sign-in" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-key-25 text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Sign In</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/sign-up" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Sign Up</span>
+                        </Link>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </aside>
     );
 };
 

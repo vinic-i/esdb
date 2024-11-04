@@ -54,19 +54,21 @@ const CondominioList = ({ refreshList }) => {
                                 <tr key={condominio.id}>
                                     <td>{condominio.nome}</td>
                                     <td>{condominio.endereco}</td>
-                                    <td>{condominio.owner.nome}</td>
+                                    <td>{condominio.owner?.nome || 'Sem proprietário'}</td>
                                     <td className="align-middle">
                                         <button
-                                            className="btn btn-danger btn-sm"
+                                            className="btn btn-link text-danger"
                                             onClick={() => handleDelete(condominio.id)}
+                                            title="Deletar"
                                         >
-                                            Delete
+                                            <i className="fas fa-trash"></i>
                                         </button>
                                         <Link
-                                            className="btn btn-danger btn-sm"
+                                            className="btn btn-link text-secondary"
                                             to={`/condominio/${condominio.id}`}
+                                            title="Visualizar"
                                         >
-                                            Visualizar
+                                            <i className="fas fa-eye"></i>
                                         </Link>
                                     </td>
                                 </tr>

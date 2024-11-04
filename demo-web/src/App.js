@@ -14,21 +14,21 @@ const App = () => {
     return (
         <UserProvider>
             <Router>
-                <div className="d-flex flex-column min-vh-100">
+                <div className="min-height-300 bg-primary position-absolute w-100"></div>
+                <SideBar/>
+                <main className="main-content position-relative border-radius-lg ">
                     <NavBar/>
-                    <div className="d-flex">
-                        <SideBar/>
-                        <main className="container-fluid py-4 flex-grow-1">
-                            <Routes>
-                                <Route path="/roles" element={<RolesPage/>}/>
-                                <Route path="/usuarios" element={<UsuariosPage/>}/>
-                                <Route path="/condominio" element={<CondominioPage/>}/>
-                                <Route path="/condominio/:id" element={<CondominioDetailsPage/>} />
-                            </Routes>
-                        </main>
+                    <div className="container-fluid py-4">
+
+                        <Routes>
+                            <Route path="/roles" element={<RolesPage/>}/>
+                            <Route path="/usuarios" element={<UsuariosPage/>}/>
+                            <Route path="/condominio" element={<CondominioPage/>}/>
+                            <Route path="/condominio/:id" element={<CondominioDetailsPage/>}/>
+                        </Routes>
                     </div>
-                    <Footer/>
-                </div>
+                </main>
+                <Footer/>
             </Router>
         </UserProvider>
     )
