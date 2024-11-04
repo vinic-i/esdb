@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {createCondominio} from '../../api/condominioApi';
+import {createCondominio, getAllCondominios} from '../../api/condominioApi';
 import {useUser} from '../../store/UsuarioContext'; // Importe o contexto do usuário
 
 const CondominioForm = ({atualizarCondominios}) => {
@@ -10,11 +10,12 @@ const CondominioForm = ({atualizarCondominios}) => {
     const [descricao, setDescricao] = useState('');
     const {user} = useUser(); // Obtenha o usuário do contexto
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const newCondominio = {
-                nome,
+                nome: nome ? nome : '',
                 endereco,
                 bloco,
                 apartamento,
@@ -87,7 +88,7 @@ const CondominioForm = ({atualizarCondominios}) => {
                             onChange={(e) => setDescricao(e.target.value)}
                         />
                     </div>
-                    <p>Proprietário: {user.nome}</p> {/* Mostra o nome do proprietário selecionado */}
+                    <p>Proprietário: {user ? user.nome : 'Sem usuário'}</p> {/* Mostra o nome do proprietário selecionado */}
                     <button type="submit" className="btn btn-primary mt-2">
                         Cadastrar
                     </button>

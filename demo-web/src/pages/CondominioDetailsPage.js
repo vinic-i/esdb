@@ -42,7 +42,7 @@ const CondominioDetailsPage = () => {
                 {condominio ? <CondominioDetails condominio={condominio}/> : <p>Condomínio não encontrado.</p>}
             </div>
             <div className="col-lg-12">
-                <AdicionarAdm/>
+                <AdicionarAdm condominio={condominio}/>
             </div>
             <div className="col-lg-4">
                 <EspacoForm condominioId={id} atualizarEspacos={atualizarEspacos}/>

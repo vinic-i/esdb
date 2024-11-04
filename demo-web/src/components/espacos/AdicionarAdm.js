@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {updateCondominio} from "../../api/condominioApi";
 import {searchUsuarios} from "../../api/usuarioApi";
+import {useUser} from "../../store/UsuarioContext";
 
-const AdicionarAdm = ({ condominioId }) => {
+const AdicionarAdm = ({condominio}) => {
     const [administradoreIds, setAdministradoreIds] = useState([]);
     const [params, setParams] = useState('');
     const [usuariosEncontrados, setUsuariosEncontrados] = useState([]);
+    const {user} = useUser(); // Obtenha o usuário do contexto
 
+    // setAdministradoreIds(condominio.administradores)
     const handleSearch = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const usuarios = await searchUsuarios(params);
-            setUsuariosEncontrados(usuarios)
-        }catch(e){
+            setUsuariosEncontrados(usuarios.data)
+            console.log(usuariosEncontrados)
+        } catch (e) {
             console.error("Erro ao buscar usuário", e)
         }
     }
@@ -26,8 +30,21 @@ const AdicionarAdm = ({ condominioId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const condominioAtualizado = { administradoreIds };
-            await updateCondominio(condominioAtualizado);
+            //Idealmente poderia fazer ...condominio aqui, porém o retorno do get
+            // tem como modelo a entidade condominio e não o DTO, e o post/put é com DTO
+            const condominioAtualizado = {
+                nome: condominio.nome,
+                endereco: condominio.endereco,
+                bloco: condominio.bloco,
+                apartamento: condominio.apartamento ?? '',
+                descricao: condominio.descricao,
+                ownerId: condominio.owner.id,
+                residenciaIds: condominio.residencias,
+                administradoreIds: administradoreIds,
+            };
+            console.log("Objeto para envio:", condominioAtualizado);
+            console.log("Objeto para envio:", administradoreIds);
+            await updateCondominio(condominio.id, condominioAtualizado, user.id ?? 402);
             alert('Administradores adicionados com sucesso!');
             setAdministradoreIds([]);
             setUsuariosEncontrados([]);
@@ -64,12 +81,12 @@ const AdicionarAdm = ({ condominioId }) => {
                             </button>
                         </div>
                     </div>
-
-                    {usuariosEncontrados.length > 0 && (
+                    {usuariosEncontrados.length > 0 ? (
                         <div className="mb-3">
                             <ul className="list-group">
                                 {usuariosEncontrados.map((usuario) => (
-                                    <li key={usuario.id} className="list-group-item d-flex justify-content-between align-items-center">
+                                    <li key={usuario.id}
+                                        className="list-group-item d-flex justify-content-between align-items-center">
                                         {usuario.nome} - {usuario.email}
                                         <button
                                             type="button"
@@ -82,6 +99,8 @@ const AdicionarAdm = ({ condominioId }) => {
                                 ))}
                             </ul>
                         </div>
+                    ) : (
+                        <p>Nenhum usuário encontrado</p>
                     )}
 
                     {administradoreIds.length > 0 && (

@@ -18,8 +18,8 @@ export const deleteCondominio = (id) => {
     return axios.delete(`${API_URL}/${id}`);
 };
 
-export const updateCondominio = (id, condominio) => {
-    return axios.put(`${API_URL}/${id}`, condominio);
+export const updateCondominio = (id, condominio, idUser) => {
+    return axios.put(`${API_URL}/${id}/${idUser}`, condominio);
 };
 
 export const getEspacosByCondominioId = (condominioId) => {
