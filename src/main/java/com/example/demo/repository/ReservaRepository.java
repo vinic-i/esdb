@@ -4,7 +4,13 @@ import com.example.demo.entity.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     // Você pode adicionar métodos personalizados aqui, se necessário
+    List<Reserva> findByEspacoIdAndDataReserva(Long espacoId, LocalDateTime dataReserva);
+
 }

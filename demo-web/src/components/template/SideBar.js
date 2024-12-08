@@ -18,24 +18,24 @@ const SideBar = () => {
             <hr className="horizontal dark mt-0"/>
             <div className="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
                 <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link to="/agendamentos" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Agendamentos</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/espacos" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-collection text-warning text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Espaços</span>
-                        </Link>
-                    </li>
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link to="/agendamentos" className="nav-link">*/}
+                    {/*        <div*/}
+                    {/*            className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">*/}
+                    {/*            <i className="ni ni-single-02 text-success text-sm opacity-10"></i>*/}
+                    {/*        </div>*/}
+                    {/*        <span className="nav-link-text ms-1">Agendamentos</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link to="/espacos" className="nav-link">*/}
+                    {/*        <div*/}
+                    {/*            className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">*/}
+                    {/*            <i className="ni ni-collection text-warning text-sm opacity-10"></i>*/}
+                    {/*        </div>*/}
+                    {/*        <span className="nav-link-text ms-1">Espaços</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <li className="nav-item">
                         <Link to="/usuarios" className="nav-link">
                             <div
@@ -63,36 +63,36 @@ const SideBar = () => {
                             <span className="nav-link-text ms-1">Papéis</span>
                         </Link>
                     </li>
-                    <li className="nav-item mt-3">
-                        <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/perfil" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Perfil</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/sign-in" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-key-25 text-warning text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Sign In</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/sign-up" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Sign Up</span>
-                        </Link>
-                    </li>
+                    {/*<li className="nav-item mt-3">*/}
+                    {/*    <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link to="/perfil" className="nav-link">*/}
+                    {/*        <div*/}
+                    {/*            className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">*/}
+                    {/*            <i className="ni ni-single-02 text-dark text-sm opacity-10"></i>*/}
+                    {/*        </div>*/}
+                    {/*        <span className="nav-link-text ms-1">Perfil</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link to="/sign-in" className="nav-link">*/}
+                    {/*        <div*/}
+                    {/*            className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">*/}
+                    {/*            <i className="ni ni-key-25 text-warning text-sm opacity-10"></i>*/}
+                    {/*        </div>*/}
+                    {/*        <span className="nav-link-text ms-1">Sign In</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link to="/sign-up" className="nav-link">*/}
+                    {/*        <div*/}
+                    {/*            className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">*/}
+                    {/*            <i className="ni ni-single-02 text-success text-sm opacity-10"></i>*/}
+                    {/*        </div>*/}
+                    {/*        <span className="nav-link-text ms-1">Sign Up</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </aside>

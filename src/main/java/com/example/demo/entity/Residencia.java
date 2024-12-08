@@ -33,7 +33,7 @@ public class Residencia {
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     @JsonManagedReference // Indica que esta é a parte "gerenciada" da referência
-    private Set<Usuario> moradores = new HashSet<>(); // Conjunto de usuários associados à residência
+    private Set<Usuario> usuarios = new HashSet<>(); // Conjunto de usuários associados à residência
 
     @Column(name = "data_registro", nullable = false)
     private LocalDateTime dataRegistro;
