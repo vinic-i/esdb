@@ -6,6 +6,12 @@ export const getAllEspacos = () => {
     return axios.get(API_URL);
 };
 
+export const listarEspacosDisponiveis = (idCondominio, dateRequest) => {
+    return axios.get(`${API_URL}/disponibilidade/${idCondominio}`, {
+        params: { dataReserva: dateRequest } // Passando a data como parâmetro na URL
+    });
+};
+
 export const getEspacoById = (id) => {
     return axios.get(`${API_URL}/${id}`);
 };

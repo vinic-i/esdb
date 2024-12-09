@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Reserva;
+import com.example.demo.forms.ReservaDTO;
 import com.example.demo.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class ReservaController {
     }
 
     @PostMapping
-    public Reserva salvar(@RequestBody Reserva reserva) {
+    public Reserva salvar(@RequestBody ReservaDTO reserva) {
         return reservaService.salvar(reserva);
     }
 

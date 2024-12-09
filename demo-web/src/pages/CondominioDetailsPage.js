@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {Route, Routes, useParams} from 'react-router-dom';
 import {getCondominioById} from '../api/condominioApi';
 import CondominioDetails from '../components/condominio/CondominioDetails';
 import EspacoForm from '../components/espacos/EspacoForm';
 import EspacoList from '../components/espacos/EspacoList';
 import AdicionarAdm from "../components/espacos/AdicionarAdm";
+import CardsDashboard from "../components/dashboard/CardsDashboard";
+import RolesPage from "./RolesPage";
+import UsuariosPage from "./UsuariosPage";
+import CondominioPage from "./CondominioPage";
+import Agendamentos from "./condominio/Agendamentos";
+import Espacos from "./condominio/Espacos";
 
 const CondominioDetailsPage = () => {
     const {id} = useParams(); // Obtém o ID da URL
@@ -26,30 +32,26 @@ const CondominioDetailsPage = () => {
         fetchCondominio();
     }, [id]);
 
-    const [refreshEspacos, setRefreshEspacos] = useState(false);
-
-    const atualizarEspacos = () => {
-        setRefreshEspacos((prev) => !prev);
-    };
 
     if (loading) return <p>Carregando...</p>;
     if (error) return <p>{error}</p>;
 
     return (
         <div className='row'>
+            <h3 className='text-white'>Detalhes do Condomínio:</h3>
             <div className="col-lg-12">
-                <h1>Detalhes do Condomínio:</h1>
-                {condominio ? <CondominioDetails condominio={condominio}/> : <p>Condomínio não encontrado.</p>}
+                <div className="card mb-3">
+                    <div className="card-body">
+
+                        {condominio ? <CondominioDetails condominio={condominio}/> : <p>Condomínio não encontrado.</p>}
+                    </div>
+                </div>
             </div>
-            <div className="col-lg-12">
-                <AdicionarAdm condominio={condominio}/>
-            </div>
-            <div className="col-lg-4">
-                <EspacoForm condominioId={id} atualizarEspacos={atualizarEspacos}/>
-            </div>
-            <div className="col-lg-8">
-                <EspacoList condominioId={id} refreshList={refreshEspacos}/>
-            </div>
+            <CardsDashboard id={id}/>
+            {/*<div className="col-lg-12">*/}
+            {/*    <AdicionarAdm condominio={condominio}/>*/}
+            {/*</div>*/}
+
         </div>
     );
 };

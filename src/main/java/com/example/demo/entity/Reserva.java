@@ -12,10 +12,7 @@ public class Reserva {
     private Long id;
 
     @NotNull(message = "A data e hora de início são obrigatórias.")
-    private LocalDateTime dataHoraInicio;
-
-    @NotNull(message = "A data e hora de fim são obrigatórias.")
-    private LocalDateTime dataHoraFim;
+    private LocalDateTime dataReserva;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -31,9 +28,8 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Usuario usuario, Espaco espaco, String status) {
-        this.dataHoraInicio = dataHoraInicio;
-        this.dataHoraFim = dataHoraFim;
+    public Reserva(LocalDateTime dataReserva, Usuario usuario, Espaco espaco, String status) {
+        this.dataReserva = dataReserva;
         this.usuario = usuario;
         this.espaco = espaco;
         this.status = status;
@@ -47,20 +43,12 @@ public class Reserva {
         this.id = id;
     }
 
-    public LocalDateTime getDataHoraInicio() {
-        return dataHoraInicio;
+    public LocalDateTime getDataReserva() {
+        return dataReserva;
     }
 
-    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
-        this.dataHoraInicio = dataHoraInicio;
-    }
-
-    public LocalDateTime getDataHoraFim() {
-        return dataHoraFim;
-    }
-
-    public void setDataHoraFim(LocalDateTime dataHoraFim) {
-        this.dataHoraFim = dataHoraFim;
+    public void setDataReserva(LocalDateTime dataReserva) {
+        this.dataReserva = dataReserva;
     }
 
     public Usuario getUsuario() {

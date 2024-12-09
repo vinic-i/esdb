@@ -1,0 +1,30 @@
+services:
+  postgres-db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=condominiodb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: backend-condominio:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/condominiodb
+    depends_on:
+      - postgres-db
+
+  spa-app:
+    build:
+      context: ./demo-web
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    depends_on:
+      - spring-app

@@ -4,6 +4,7 @@ import com.example.demo.entity.Residencia;
 import com.example.demo.entity.Usuario;
 import jakarta.validation.constraints.NotEmpty;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,8 +20,8 @@ public class CondominioDTO {
     private String apartamento;
     private String descricao;
     private Long ownerId;
-    private List<Long> residenciaIds;
-    private List<Long> administradoreIds;
+    private List<Long> residenciaIds = new ArrayList<>();
+    private List<Long> administradoreIds = new ArrayList<>();
 
     // Getters e Setters
 
