@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {createUsuario} from '../../api/usuarioApi';
+import {createUsuario, createUsuario2} from '../../api/usuarioApi';
 import {getAllRoles} from "../../api/rolesApi";
 
 const UsuarioForm = ({atualizarUsuarios}) => {
@@ -8,7 +8,7 @@ const UsuarioForm = ({atualizarUsuarios}) => {
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [roles, setRoles] = useState([]);
-    const [selectedRoles, setSelectedRoles] = useState([]);
+    const [selectedRoles, setSelectedRoles] = useState();
 
     useEffect(() => {
         const fetchRoles = async () => {
@@ -23,11 +23,7 @@ const UsuarioForm = ({atualizarUsuarios}) => {
     }, []);
 
     const handleRoleChange = (roleId) => {
-        setSelectedRoles(prevSelectedRoles =>
-            prevSelectedRoles.includes(roleId)
-                ? prevSelectedRoles.filter(id => id !== roleId)
-                : [...prevSelectedRoles, roleId]
-        );
+        setSelectedRoles(roleId);
     };
 
     const handleSubmit = async (e) => {
@@ -41,15 +37,15 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                 nome,
                 email,
                 senha,
-                roleIds: selectedRoles
+                role: selectedRoles
             };
-            await createUsuario(newUser);
+            await createUsuario2(newUser);
             alert('Usuário cadastrado com sucesso!');
             setNome('');
             setEmail('');
             setSenha('');
             setConfirmarSenha('');
-            setSelectedRoles([]);
+            setSelectedRoles();
         } catch (error) {
             console.error("Erro ao criar usuário:", error);
         }
@@ -111,7 +107,6 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                                         className="form-check-input"
                                         type="checkbox"
                                         value={role.id}
-                                        checked={selectedRoles.includes(role)}
                                         onChange={() => handleRoleChange(role)}
                                     />
                                     <label className="form-check-label">{role}</label>

@@ -37,21 +37,21 @@ const SideBar = () => {
                     {/*    </Link>*/}
                     {/*</li>*/}
                     <li className="nav-item">
+                        <Link to="/" className="nav-link">
+                            <div
+                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span className="nav-link-text ms-1">Condomínio</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/usuarios" className="nav-link">
                             <div
                                 className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
                             </div>
                             <span className="nav-link-text ms-1">Cadastros de Usuários</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/condominio" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Condomínio</span>
                         </Link>
                     </li>
                     <li className="nav-item">

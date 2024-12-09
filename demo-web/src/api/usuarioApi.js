@@ -13,7 +13,15 @@ export const getUsuarioById = (id) => {
 };
 
 export const createUsuario = (usuario) => {
-    return axios.post(`${API_URL_CADASTRO}/register`, usuario);
+    return axios.post(`${API_URL}`, usuario);
+};
+
+export const createUsuario2 = (usuario) => {
+    return axios.post(`${API_URL_CADASTRO}/register`, usuario, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 };
 
 export const deleteUsuario = (id) => {
