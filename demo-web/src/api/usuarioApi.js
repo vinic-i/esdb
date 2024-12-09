@@ -21,6 +21,7 @@ export const createUsuario2 = (usuario) => {
         headers: {
             'Content-Type': 'application/json',
         },
+        withCredentials: true, // Certifique-se de que isso seja necessário
     });
 };
 

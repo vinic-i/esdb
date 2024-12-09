@@ -45,7 +45,7 @@ const Login = () => {
                                                        onChange={(e) => setEmail(e.target.value)}/>
                                             </div>
                                             <div className="mb-3">
-                                                <input type="email" className="form-control form-control-lg"
+                                                <input type="password" className="form-control form-control-lg"
                                                        placeholder="Password"
                                                        aria-label="Password" value={password}
                                                        onChange={(e) => setPassword(e.target.value)}
