@@ -6,18 +6,14 @@ import Login from "./components/login/LoginForm";
 import GeneralLayout from "./pages/GeneralLayout";
 
 const App = () => {
-    let login = false
+    let login = true
     return (
         <UserProvider>
             <Router>
-
-                {login ? ( // Corrige a estrutura condicional
-                    <GeneralLayout/>
-                ) : (
-                    <Routes>
-                        <Route path="/login" element={<Login/>}/>
-                    </Routes>
-                )}
+                <Routes>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/" element={<GeneralLayout/>}/>
+                </Routes>
             </Router>
         </UserProvider>
     )
