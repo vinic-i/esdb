@@ -1,15 +1,16 @@
 // src/App.js
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import RolesPage from './pages/RolesPage';
-import UsuariosPage from './pages/UsuariosPage';
-import CondominioPage from "./pages/CondominioPage";
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import CardItem from "./components/template/CardItem";
+import Footer from "./components/template/Footer";
 import NavBar from "./components/template/NavBar";
 import SideBar from "./components/template/SideBar";
-import Footer from "./components/template/Footer";
-import {UserProvider} from "./store/UsuarioContext";
 import CondominioDetailsPage from './pages/CondominioDetailsPage';
-import CardItem from "./components/template/CardItem";
+import CondominioPage from "./pages/CondominioPage";
+import LoginPage from "./pages/LoginPage";
+import RolesPage from './pages/RolesPage';
+import UsuariosPage from './pages/UsuariosPage';
+import { UserProvider } from "./store/UsuarioContext";
 
 const App = () => {
     return (
@@ -56,7 +57,7 @@ const App = () => {
                             <Route path="/usuarios" element={<UsuariosPage/>}/>
                             <Route path="/condominio" element={<CondominioPage/>}/>
                             <Route path="/condominio/:id" element={<CondominioDetailsPage/>}/>
-                        </Routes>
+                            </Routes>
                     </div>
                 </main>
                 <Footer/>

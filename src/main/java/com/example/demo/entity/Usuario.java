@@ -31,7 +31,6 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty(message = "O nome é obrigatório.")
     private String nome;
 
     @NotEmpty(message = "O email é obrigatório.")
@@ -71,12 +70,15 @@ public class Usuario implements UserDetails {
         this.dataAtualizacao = LocalDateTime.now();
     }
 
-    public Usuario(String email, String senha, UserRole role){
+    public Usuario(String nome, String email, String senha, UserRole role, boolean notificacoes) {
+        this.nome = nome;
         this.email = email;
-        this.senha = senha; 
+        this.senha = senha;
         this.role = role;
+        this.notificacoes = notificacoes;
+        this.dataCriacao = LocalDateTime.now();
+        this.dataAtualizacao = LocalDateTime.now();
     }
-
 
     public Long getId() {
         return id;
@@ -186,7 +188,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPassword'");
-    }    
+       return this.getSenha();
+    }  
+    
 }

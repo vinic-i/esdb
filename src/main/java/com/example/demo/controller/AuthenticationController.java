@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Usuario;
 import com.example.demo.forms.AuthenticationDTO;
-import com.example.demo.forms.RegisterDTO;
+import com.example.demo.forms.UsuarioDTO;
 import com.example.demo.repository.UsuarioRepository;
 
 import jakarta.validation.Valid;
@@ -36,13 +36,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
+    public ResponseEntity register(@RequestBody @Valid UsuarioDTO data) {
         
-        if(usuarioRepository.findByEmail(data.login()) != null) 
+        if(usuarioRepository.findByEmail(data.getEmail()) != null) 
             return ResponseEntity.badRequest().build();
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        Usuario novoUsuario = new Usuario(data.login(), encryptedPassword, data.role());
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.getSenha());
+        Usuario novoUsuario = new Usuario(data.getNome(),data.getEmail(), encryptedPassword, data.getRole(), false);
         
         usuarioRepository.save(novoUsuario);
 
