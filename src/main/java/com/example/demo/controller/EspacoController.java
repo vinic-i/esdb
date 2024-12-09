@@ -25,8 +25,8 @@ public class EspacoController {
     }
 
     @GetMapping
-    public List<Espaco> listarTodos() {
-        return espacoService.listarTodos();
+    public ResponseEntity<List<Espaco>> listarTodos() {
+        return ResponseEntity.ok(espacoService.listarTodos());
     }
 
     @GetMapping("/disponibilidade/{id}")

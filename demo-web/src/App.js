@@ -9,8 +9,6 @@ import NavBar from "./components/template/NavBar";
 import SideBar from "./components/template/SideBar";
 import {UserProvider} from "./store/UsuarioContext";
 import CondominioDetailsPage from './pages/CondominioDetailsPage';
-import Agendamentos from "./pages/condominio/Agendamentos";
-import Espacos from "./pages/condominio/Espacos";
 
 const App = () => {
     return (
@@ -21,15 +19,13 @@ const App = () => {
                 <main className="main-content position-relative border-radius-lg ">
                     <NavBar/>
                     <div className="container-fluid py-4">
-
+                        
                         <Routes>
-                            {/*<Route path="/" element={<CardsDashboard/>}/>*/}
+                            <Route path="/" element={<CardsDashboard/>}/>
                             <Route path="/roles" element={<RolesPage/>}/>
                             <Route path="/usuarios" element={<UsuariosPage/>}/>
                             <Route path="/condominio" element={<CondominioPage/>}/>
                             <Route path="/condominio/:id" element={<CondominioDetailsPage/>}/>
-                            <Route path="/condominio/agendamentos/:id" element={<Agendamentos/>}/>
-                            <Route path="/condominio/espacos/:id" element={<Espacos/>}/>
                         </Routes>
                     </div>
                 </main>
