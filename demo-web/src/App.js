@@ -9,17 +9,23 @@ import NavBar from "./components/template/NavBar";
 import SideBar from "./components/template/SideBar";
 import {UserProvider} from "./store/UsuarioContext";
 import CondominioDetailsPage from './pages/CondominioDetailsPage';
+import Login from "./components/login/LoginForm";
 
 const App = () => {
+
+    let login = false
     return (
         <UserProvider>
             <Router>
+                <Routes>
+                    <Route path="/login" element={<Login/>}/>
+                </Routes>
                 <div className="min-height-300 bg-primary position-absolute w-100"></div>
                 <SideBar/>
                 <main className="main-content position-relative border-radius-lg ">
                     <NavBar/>
                     <div className="container-fluid py-4">
-                        
+
                         <Routes>
                             <Route path="/" element={<CardsDashboard/>}/>
                             <Route path="/roles" element={<RolesPage/>}/>
