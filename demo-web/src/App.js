@@ -8,6 +8,7 @@ import UsuariosPage from "./pages/UsuariosPage";
 import RolesPage from "./pages/LoginPage";
 import CondominioDetailsPage from "./pages/CondominioDetailsPage";
 import CondominioPage from "./pages/CondominioPage";
+import RegisterForm from "./components/login/RegisterForm";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <Routes>
                     {/* Rota de login, sem layout completo */}
                     <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<RegisterForm/>}/>
 
                     {/* Rota para conteúdo interno, com layout completo */}
                     <Route path="/" element={<GeneralLayout/>}>

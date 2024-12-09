@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {login} from '../../api/loginApi';
+import {Link} from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -32,42 +33,42 @@ const Login = () => {
                             <div className="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
                                 <div className="card card-plain bg-white">
                                     <div className="card-header pb-0 text-start">
-                                        <h4 className="font-weight-bolder">Sign In</h4>
-                                        <p className="mb-0">Enter your email and password to sign in</p>
+                                        <h4 className="font-weight-bolder">Entrar no sistema</h4>
+                                        <p className="mb-0">Informe seu email e senha para entrar</p>
                                     </div>
                                     <div className="card-body">
-                                        <form role="form" onSubmit={handleLogin}>
-                                            <div className="mb-3">
-                                                <input type="email" className="form-control form-control-lg"
-                                                       placeholder="Email"
-                                                       aria-label="Email"
-                                                       value={email}
-                                                       onChange={(e) => setEmail(e.target.value)}/>
-                                            </div>
-                                            <div className="mb-3">
-                                                <input type="password" className="form-control form-control-lg"
-                                                       placeholder="Password"
-                                                       aria-label="Password" value={password}
-                                                       onChange={(e) => setPassword(e.target.value)}
-                                                />
-                                            </div>
-                                            <div className="form-check form-switch">
-                                                <input className="form-check-input" type="checkbox" id="rememberMe"/>
-                                                <label className="form-check-label" htmlFor="rememberMe">Remember
-                                                    me</label>
-                                            </div>
-                                            <div className="text-center">
-                                                <button type="submit"
-                                                        className="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign
-                                                    in
-                                                </button>
-                                            </div>
-                                        </form>
+                                        <div className="mb-3">
+                                            <input type="email" className="form-control form-control-lg"
+                                                   placeholder="Email"
+                                                   aria-label="Email"
+                                                   value={email}
+                                                   onChange={(e) => setEmail(e.target.value)}/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="password" className="form-control form-control-lg"
+                                                   placeholder="Senha"
+                                                   aria-label="Password" value={password}
+                                                   onChange={(e) => setPassword(e.target.value)}
+                                            />
+                                        </div>
+                                        {/*<div className="form-check form-switch">*/}
+                                        {/*    <input className="form-check-input" type="checkbox" id="rememberMe"/>*/}
+                                        {/*    <label className="form-check-label" htmlFor="rememberMe">Remember*/}
+                                        {/*        me</label>*/}
+                                        {/*</div>*/}
+                                        <div className="text-center">
+                                            <button type="button"
+                                                    onClick={handleLogin}
+                                                    className="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Entrar
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className="card-footer text-center pt-0 px-lg-2 px-1">
                                         <p className="mb-4 text-sm mx-auto">
-                                            Don't have an account?
-                                            {/*<a className="text-primary text-gradient font-weight-bold">Sign up</a>*/}
+                                            Ainda não tem conta?
+                                            <Link to="/register"
+                                                  className="text-primary text-gradient font-weight-bold"> Se cadastre
+                                                aqui</Link>
                                         </p>
                                     </div>
                                 </div>
@@ -81,12 +82,10 @@ const Login = () => {
                                         backgroundSize: "cover",
                                     }}>
                                     <span className="mask bg-gradient-primary opacity-6"></span>
-                                    <h4 className="mt-5 text-white font-weight-bolder position-relative">"Attention is
-                                        the new
-                                        currency"</h4>
-                                    <p className="text-white position-relative">The more effortless the writing looks,
-                                        the more effort
-                                        the writer actually put into the process.</p>
+                                    <h4 className="mt-5 text-white font-weight-bolder position-relative">Gerencie seu
+                                        condomínio</h4>
+                                    <p className="text-white position-relative">Quanto mais natural a escrita parece,
+                                        mais esforço o escritor realmente dedicou ao processo.</p>
                                 </div>
                             </div>
                         </div>

@@ -12,11 +12,11 @@ export const getUsuarioById = (id) => {
     return axios.get(`${API_URL}/${id}`);
 };
 
-export const createUsuario = (usuario) => {
+export const createUsuario3 = (usuario) => {
     return axios.post(`${API_URL}`, usuario);
 };
 
-export const createUsuario2 = (usuario) => {
+export const createUsuario = (usuario) => {
     return axios.post(`${API_URL_CADASTRO}/register`, usuario, {
         headers: {
             'Content-Type': 'application/json',

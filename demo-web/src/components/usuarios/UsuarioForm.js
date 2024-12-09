@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {createUsuario, createUsuario2} from '../../api/usuarioApi';
+import {createUsuario} from '../../api/usuarioApi';
 import {getAllRoles} from "../../api/rolesApi";
 
 const UsuarioForm = ({atualizarUsuarios}) => {
@@ -39,7 +39,7 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                 senha,
                 role: selectedRoles
             };
-            await createUsuario2(newUser);
+            await createUsuario(newUser);
             alert('Usuário cadastrado com sucesso!');
             setNome('');
             setEmail('');
