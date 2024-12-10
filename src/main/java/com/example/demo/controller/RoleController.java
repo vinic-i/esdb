@@ -1,42 +1,23 @@
 package com.example.demo.controller;
 
-
-import com.example.demo.entity.Role;
-import com.example.demo.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.enums.UserRole;
+
 
 @RestController
 @RequestMapping("/api/roles")
 public class RoleController {
-
-    @Autowired
-    private RoleService roleService;
-
-    @PostMapping
-    public ResponseEntity<Role> createRole(@RequestBody Role role) {
-        Role novaRole = roleService.criarRole(role);
-        return ResponseEntity.ok(novaRole);
-    }
-
+    
     @GetMapping
-    public ResponseEntity<List<Role>> getAllRoles() {
-        List<Role> roles = roleService.encontrarTodos();
-        return ResponseEntity.ok(roles);
+    public ResponseEntity<List<UserRole>> getAllRoles() {
+        System.out.println(List.of(UserRole.values()));
+        return ResponseEntity.ok(List.of(UserRole.values()));
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Role> getRoleById(@PathVariable("id") Long id) {
-        Role selectedRole = roleService.encontrarPorId(id);
-        return ResponseEntity.ok(selectedRole);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteRole(@PathVariable("id") Long id) {
-        roleService.deleteRole(id);
-        return ResponseEntity.noContent().build();
-    }
+    
 }

@@ -1,6 +1,6 @@
 package com.example.demo.forms;
 
-import java.util.Set;
+import com.example.demo.enums.UserRole;
 
 public class UsuarioDTO {
 
@@ -10,7 +10,7 @@ public class UsuarioDTO {
 
     private String senha;
 
-    private Set<Long> roleIds;
+    private UserRole role;
 
     // Getters e Setters
 
@@ -38,11 +38,11 @@ public class UsuarioDTO {
         this.senha = senha;
     }
 
-    public Set<Long> getRoleIds() {
-        return roleIds;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setRoleIds(Set<Long> roleIds) {
-        this.roleIds = roleIds;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
