@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Usuario;
@@ -35,13 +36,16 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
+    @ResponseBody
     public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO data){
         try {
             var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
             var auth = this.authenticationManager.authenticate(usernamePassword);
             var token = tokenService.generateToken((Usuario) auth.getPrincipal());
-            
-            return ResponseEntity.ok(new LoginResponseDTO(token));
+
+            Usuario usuario = ((Usuario) auth.getPrincipal());
+
+            return ResponseEntity.ok(new LoginResponseDTO(token, usuario.getEmail(), usuario.getNome()));
         } catch (BadCredentialsException e) {
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
