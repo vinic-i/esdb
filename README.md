@@ -1,4 +1,4 @@
-# Sistema de Gerenciamento de Condomínios  
+# GestCon - Sistema de Gerenciamento de Condomínios  
 
 ## 📖 Introdução ao Projeto  
 Administrar um condomínio pode ser uma tarefa complexa, exigindo coordenação, organização e ferramentas adequadas. Este sistema foi projetado para simplificar a administração de condomínios, oferecendo uma solução digital moderna, eficiente e acessível que melhora a experiência de moradores e administradores.  
@@ -19,4 +19,4 @@ Com funcionalidades práticas, o sistema permite gerenciar áreas comuns, realiz
 - **IDE**: IntelliJ IDEA, utilizado para um desenvolvimento produtivo e organizado.  
 
 ## 📚 Documentação Completa  
-Para mais detalhes sobre o projeto, consulte a [documentação completa](https://github.com/vinic-i/esdb/blob/master/Condom%20documenta%C3%A7%C3%A3o.docx.pdf).  
+Para mais detalhes sobre o projeto, consulte a [documentação completa](https://github.com/vinic-i/esdb/blob/master/GestCon%20documenta%C3%A7%C3%A3o.docx.pdf).  
