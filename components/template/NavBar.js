@@ -54,7 +54,7 @@ const NavBar = () => {
                                     <a className="dropdown-item border-radius-md" href="javascript:;">
                                         <div className="d-flex py-1">
                                             <div className="my-auto">
-                                                <img src="./assets/img/team-2.jpg" className="avatar avatar-sm  me-3 "/>
+                                                
                                             </div>
                                             <div className="d-flex flex-column justify-content-center">
                                                 <h6 className="text-sm font-weight-normal mb-1">
@@ -68,25 +68,9 @@ const NavBar = () => {
                                         </div>
                                     </a>
                                 </li>
-                                {/*<li className="mb-2">*/}
-                                {/*    <a className="dropdown-item border-radius-md" href="javascript:;">*/}
-                                {/*        <div className="d-flex py-1">*/}
-                                {/*            <div className="my-auto">*/}
-                                {/*                <img src="./assets/img/small-logos/logo-spotify.svg"*/}
-                                {/*                     className="avatar avatar-sm bg-gradient-dark  me-3 "/>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="d-flex flex-column justify-content-center">*/}
-                                {/*                <h6 className="text-sm font-weight-normal mb-1">*/}
-                                {/*                    <span className="font-weight-bold">New album</span> by Travis Scott*/}
-                                {/*                </h6>*/}
-                                {/*                <p className="text-xs text-secondary mb-0">*/}
-                                {/*                    <i className="fa fa-clock me-1"></i>*/}
-                                {/*                    1 day*/}
-                                {/*                </p>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*    </a>*/}
-                                {/*</li>*/}
+
+                               
+
                                 <li>
                                     <a className="dropdown-item border-radius-md" href="javascript:;">
                                         <div className="d-flex py-1">
