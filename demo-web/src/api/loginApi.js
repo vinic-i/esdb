@@ -1,12 +1,13 @@
-import axios from 'axios';
+import {api} from './axios'
 
-const API_URL = 'http://localhost:8080/auth/login'; // Ajuste a URL conforme necessário
+const API_URL = '/auth/login'; // Ajuste a URL conforme necessário
 
-export const login = (email, senha) => {
+export const login = (email, password) => {
 
     const params = {};
     if (email) params.email = email;
-    if (senha) params.senha = senha;
+    if (password) params.password = password;
 
-    return axios.post(API_URL, {params});
+    return api.post(API_URL, params);
 };
+ 

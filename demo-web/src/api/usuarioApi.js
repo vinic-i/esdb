@@ -1,11 +1,12 @@
 import axios from 'axios';
+import {api} from './axios'
 
 const API_URL = 'http://localhost:8080/api/usuarios'; // Ajuste a URL conforme necessário
 const API_URL_CADASTRO = 'http://localhost:8080/auth'; // Ajuste a URL conforme necessário
 
 
 export const getAllUsuarios = () => {
-    return axios.get(API_URL);
+    return api.get(API_URL);
 };
 
 export const getUsuarioById = (id) => {
@@ -17,7 +18,7 @@ export const createUsuario3 = (usuario) => {
 };
 
 export const createUsuario = (usuario) => {
-    return axios.post(`${API_URL_CADASTRO}/register`, usuario, {
+    return api.post(`${API_URL_CADASTRO}/register`, usuario, {
         headers: {
             'Content-Type': 'application/json',
         },

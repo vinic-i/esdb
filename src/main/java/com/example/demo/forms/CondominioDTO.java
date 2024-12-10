@@ -1,12 +1,9 @@
 package com.example.demo.forms;
 
-import com.example.demo.entity.Residencia;
-import com.example.demo.entity.Usuario;
-import jakarta.validation.constraints.NotEmpty;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import jakarta.validation.constraints.NotEmpty;
 
 public class CondominioDTO {
 
