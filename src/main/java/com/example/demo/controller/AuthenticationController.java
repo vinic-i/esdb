@@ -45,7 +45,7 @@ public class AuthenticationController {
 
             Usuario usuario = ((Usuario) auth.getPrincipal());
 
-            return ResponseEntity.ok(new LoginResponseDTO(token, usuario.getEmail(), usuario.getNome()));
+            return ResponseEntity.ok(new LoginResponseDTO(token, usuario.getEmail(), usuario.getNome(), usuario.getId()));
         } catch (BadCredentialsException e) {
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

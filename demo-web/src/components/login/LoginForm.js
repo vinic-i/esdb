@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import { login } from '../../api/loginApi';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link} from "react-router-dom";
+import {login} from '../../api/loginApi';
+import {useNavigate} from 'react-router-dom';
+import {useUser} from "../../store/UsuarioContext";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate();  
+    const navigate = useNavigate();
+    const {userLogin, user} = useUser();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -16,14 +18,10 @@ const Login = () => {
             return;
         }
         try {
-            console.log(`Email: ${email}, Senha: ${password}`);
-
-            // Chama a função de login
+            // debugger
             const response = await login(email, password);
-            
-            // Armazena o token no localStorage
             localStorage.setItem('authToken', response.data.token);
-
+            userLogin(response.data)
             alert('Login bem-sucedido!');
 
             navigate('/');

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getAllCondominios, deleteCondominio } from '../../api/condominioApi';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {getAllCondominios, deleteCondominio} from '../../api/condominioApi';
+import {Link} from 'react-router-dom';
 
-const CondominioList = ({ refreshList }) => {
+const CondominioList = ({refreshList}) => {
     const [condominios, setCondominios] = useState([]);
 
     useEffect(() => {
@@ -55,19 +55,23 @@ const CondominioList = ({ refreshList }) => {
                                     <td>{condominio.nome}</td>
                                     <td>{condominio.endereco}</td>
                                     <td>{condominio.owner?.nome || 'Sem proprietário'}</td>
-                                    <td className="align-middle">
+                                    <td className="d-flex justify-content-around">
                                         <button
-                                            className="btn btn-link text-danger"
+                                            className="btn btn-danger m-0 "
                                             onClick={() => handleDelete(condominio.id)}
                                             title="Deletar"
                                         >
                                             <i className="fas fa-trash"></i>
+                                            Deletar
                                         </button>
+
+
                                         <Link
-                                            className="btn btn-link text-secondary"
+                                            className="btn btn-success m-0"
                                             to={`/condominio/${condominio.id}`}
                                             title="Visualizar"
                                         >
+                                            Visualizar
                                             <i className="fas fa-eye"></i>
                                         </Link>
                                     </td>

@@ -1,6 +1,6 @@
 // src/components/template/NavBar.js
 import React from 'react';
-import { Link } from 'react-router-dom'; // Adicione esta linha
+import {Link} from 'react-router-dom'; // Adicione esta linha
 
 const NavBar = () => {
     return (
@@ -26,10 +26,10 @@ const NavBar = () => {
                     <ul className="navbar-nav  justify-content-end">
                         <li className="nav-item d-flex align-items-center">
                             <a href="javascript:;" className="nav-link text-white font-weight-bold px-0">
-                            <Link to="/logout" className="nav-link text-white font-weight-bold px-0">
-                                <i className="fa fa-user me-sm-1"></i>
-                                <span className="d-sm-inline d-none">Sair</span>
-                            </Link>
+                                <Link to="/logout" className="nav-link text-white font-weight-bold px-0">
+                                    <i className="fa fa-user me-sm-1"></i>
+                                    <span className="d-sm-inline d-none">Sair</span>
+                                </Link>
                             </a>
                         </li>
                         <li className="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -57,7 +57,7 @@ const NavBar = () => {
                                     <a className="dropdown-item border-radius-md" href="javascript:;">
                                         <div className="d-flex py-1">
                                             <div className="my-auto">
-                                               
+
                                             </div>
                                             <div className="d-flex flex-column justify-content-center">
                                                 <h6 className="text-sm font-weight-normal mb-1">
@@ -71,8 +71,7 @@ const NavBar = () => {
                                         </div>
                                     </a>
                                 </li>
-      
-                             
+
 
                                 <li>
                                     <a className="dropdown-item border-radius-md" href="javascript:;">
@@ -80,9 +79,9 @@ const NavBar = () => {
                                             <div className="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                                                 <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1">
                                                     <title>credit-card</title>
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g stroke="none" fill="none">
                                                         <g transform="translate(-2169.000000, -745.000000)"
-                                                           fill="#FFFFFF" fill-rule="nonzero">
+                                                           fill="#FFFFFF">
                                                             <g transform="translate(1716.000000, 291.000000)">
                                                                 <g transform="translate(453.000000, 454.000000)">
                                                                     <path className="color-background"

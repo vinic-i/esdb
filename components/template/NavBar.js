@@ -77,9 +77,9 @@ const NavBar = () => {
                                             <div className="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                                                 <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1">
                                                     <title>credit-card</title>
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g stroke="none" fill="none">
                                                         <g transform="translate(-2169.000000, -745.000000)"
-                                                           fill="#FFFFFF" fill-rule="nonzero">
+                                                           fill="#FFFFFF">
                                                             <g transform="translate(1716.000000, 291.000000)">
                                                                 <g transform="translate(453.000000, 454.000000)">
                                                                     <path className="color-background"

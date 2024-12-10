@@ -10,6 +10,7 @@ import CondominioDetailsPage from "./pages/CondominioDetailsPage";
 import CondominioPage from "./pages/CondominioPage";
 import RegisterForm from "./components/login/RegisterForm";
 import LogoutForm from "./components/login/LogoutForm"
+import PrivateRoute from "./components/router/PrivateRoute";
 
 const App = () => {
     return (
@@ -24,10 +25,18 @@ const App = () => {
 
                     {/* Rota para conteúdo interno, com layout completo */}
                     <Route path="/" element={<GeneralLayout/>}>
-                        <Route path="/" element={<CondominioPage/>}/>
-                        {/*<Route path="/roles" element={<RolesPage/>}/>*/}
-                        <Route path="/usuarios" element={<UsuariosPage/>}/>
-                        <Route path="/condominio/:id" element={<CondominioDetailsPage/>}/>
+                        <Route
+                            path="/"
+                            element={<PrivateRoute element={<CondominioPage/>}/>}
+                        />
+                        <Route
+                            path="/usuarios"
+                            element={<PrivateRoute element={<UsuariosPage/>}/>}
+                        />
+                        <Route
+                            path="/condominio/:id"
+                            element={<PrivateRoute element={<CondominioDetailsPage/>}/>}
+                        />
                     </Route>
                 </Routes>
             </Router>
