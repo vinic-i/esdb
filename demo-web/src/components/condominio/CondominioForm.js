@@ -28,6 +28,7 @@ const CondominioForm = ({atualizarCondominios}) => {
             // Reseta os campos
             setNome('');
             setEndereco('');
+            setApartamento('');
             setBloco('');
             setDescricao('');
         } catch (error) {

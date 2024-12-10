@@ -1,8 +1,5 @@
 package com.example.demo.forms;
 
-import com.example.demo.entity.Espaco;
-import com.example.demo.entity.Usuario;
-
 public class EspacoDisponibilidadeDTO {
     private Long id; // Identificador do espaço
     private String nome; // Nome do espaço
