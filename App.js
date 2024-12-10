@@ -17,7 +17,7 @@ const App = () => {
                 <div className="min-height-300 bg-primary position-absolute w-100"></div>
                 <SideBar/>
                 <main className="main-content position-relative border-radius-lg ">
-                    <NavBar/>
+                    {/*<NavBar/>*/}
                     <div className="container-fluid py-4">
                         
                         <Routes>
