@@ -9,6 +9,7 @@ import RolesPage from "./pages/LoginPage";
 import CondominioDetailsPage from "./pages/CondominioDetailsPage";
 import CondominioPage from "./pages/CondominioPage";
 import RegisterForm from "./components/login/RegisterForm";
+import LogoutForm from "./components/login/LogoutForm"
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     {/* Rota de login, sem layout completo */}
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<RegisterForm/>}/>
+                    <Route path="/logout" element={<LogoutForm/>}/>
 
                     {/* Rota para conteúdo interno, com layout completo */}
                     <Route path="/" element={<GeneralLayout/>}>

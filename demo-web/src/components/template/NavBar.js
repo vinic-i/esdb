@@ -1,5 +1,6 @@
 // src/components/template/NavBar.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // Adicione esta linha
 
 const NavBar = () => {
     return (
@@ -25,8 +26,10 @@ const NavBar = () => {
                     <ul className="navbar-nav  justify-content-end">
                         <li className="nav-item d-flex align-items-center">
                             <a href="javascript:;" className="nav-link text-white font-weight-bold px-0">
+                            <Link to="/logout" className="nav-link text-white font-weight-bold px-0">
                                 <i className="fa fa-user me-sm-1"></i>
-                                <span className="d-sm-inline d-none">Sign In</span>
+                                <span className="d-sm-inline d-none">Sair</span>
+                            </Link>
                             </a>
                         </li>
                         <li className="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -54,7 +57,7 @@ const NavBar = () => {
                                     <a className="dropdown-item border-radius-md" href="javascript:;">
                                         <div className="d-flex py-1">
                                             <div className="my-auto">
-                                                <img src="./assets/img/team-2.jpg" className="avatar avatar-sm  me-3 "/>
+                                               
                                             </div>
                                             <div className="d-flex flex-column justify-content-center">
                                                 <h6 className="text-sm font-weight-normal mb-1">
@@ -72,8 +75,7 @@ const NavBar = () => {
                                     <a className="dropdown-item border-radius-md" href="javascript:;">
                                         <div className="d-flex py-1">
                                             <div className="my-auto">
-                                                <img src="./assets/img/small-logos/logo-spotify.svg"
-                                                     className="avatar avatar-sm bg-gradient-dark  me-3 "/>
+                                               
                                             </div>
                                             <div className="d-flex flex-column justify-content-center">
                                                 <h6 className="text-sm font-weight-normal mb-1">
