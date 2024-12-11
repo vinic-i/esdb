@@ -1,7 +1,7 @@
 // src/components/condominios/EspacoList.js
 import React, { useEffect, useState } from 'react';
 import {getEspacosByCondominioId} from "../../api/condominioApi";
-import {deleteEspaco, getAllEspacos} from "../../api/espacoApi";
+import {deleteEspaco} from "../../api/espacoApi";
 
 const EspacoList = ({ condominioId, refreshList }) => {
     const [espacos, setEspacos] = useState([]);

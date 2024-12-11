@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
 import {getAllUsuarios, deleteUsuario} from '../../api/usuarioApi';
-import {useUser} from "../../store/UsuarioContext";
 
 const UsuarioList = ({refreshList}) => {
     const [users, setUsers] = React.useState([]);
-    const {login} = useUser();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -46,7 +44,7 @@ const UsuarioList = ({refreshList}) => {
                         <tbody>
                         {Array.isArray(users) && users.length > 0 ? (
                             users.map((user) => (
-                                <tr key={user.id} onClick={() => login(user)}>
+                                <tr key={user.id}>
                                     <td>
                                         <div className="d-flex px-2 py-1">
                                             <div className="d-flex flex-column justify-content-center">
@@ -59,10 +57,10 @@ const UsuarioList = ({refreshList}) => {
                                         <span>{user.roles && user.roles.length > 0 ? user.roles[0].nome : 'Sem papel'}</span>
                                     </td>
                                     <td className="align-middle text-center">
-                                        <button className="btn btn-link text-secondary" onClick={() => login(user)}
-                                                title="Visualizar">
-                                            <i className="fas fa-eye"></i>
-                                        </button>
+                                        {/*<button className="btn btn-link text-secondary" onClick={() => login(user)}*/}
+                                        {/*        title="Visualizar">*/}
+                                        {/*    <i className="fas fa-eye"></i>*/}
+                                        {/*</button>*/}
 
                                         <button className="btn btn-link text-danger"
                                                 onClick={() => handleDelete(user.id)} title="Deletar">

@@ -4,6 +4,7 @@ import com.example.demo.entity.Espaco;
 import com.example.demo.forms.EspacoDTO;
 import com.example.demo.forms.EspacoDisponibilidadeDTO;
 import com.example.demo.service.EspacoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,8 @@ public class EspacoController {
     }
 
     @GetMapping
-    public List<Espaco> listarTodos() {
-        return espacoService.listarTodos();
+    public ResponseEntity<List<Espaco>> listarTodos() {
+        return ResponseEntity.ok(espacoService.listarTodos());
     }
 
     @GetMapping("/disponibilidade/{id}")
@@ -42,7 +43,7 @@ public class EspacoController {
         return ResponseEntity.ok(espacos);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Espaco> encontrarPorId(@PathVariable Long id) {
         Optional<Espaco> espaco = espacoService.encontrarPorId(id);
         return espaco.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());

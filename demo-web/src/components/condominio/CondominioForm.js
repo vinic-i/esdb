@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {createCondominio, getAllCondominios} from '../../api/condominioApi';
+import React, {useState} from 'react';
+import {createCondominio} from '../../api/condominioApi';
 import {useUser} from '../../store/UsuarioContext'; // Importe o contexto do usuário
 
 const CondominioForm = ({atualizarCondominios}) => {
@@ -28,6 +28,7 @@ const CondominioForm = ({atualizarCondominios}) => {
             // Reseta os campos
             setNome('');
             setEndereco('');
+            setApartamento('');
             setBloco('');
             setDescricao('');
         } catch (error) {

@@ -7,9 +7,8 @@ const UsuarioForm = ({atualizarUsuarios}) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
-    const [notificacoes, setNotificacoes] = useState(false);
     const [roles, setRoles] = useState([]);
-    const [selectedRoles, setSelectedRoles] = useState([]);
+    const [selectedRoles, setSelectedRoles] = useState();
 
     useEffect(() => {
         const fetchRoles = async () => {
@@ -24,11 +23,7 @@ const UsuarioForm = ({atualizarUsuarios}) => {
     }, []);
 
     const handleRoleChange = (roleId) => {
-        setSelectedRoles(prevSelectedRoles =>
-            prevSelectedRoles.includes(roleId)
-                ? prevSelectedRoles.filter(id => id !== roleId)
-                : [...prevSelectedRoles, roleId]
-        );
+        setSelectedRoles(roleId);
     };
 
     const handleSubmit = async (e) => {
@@ -42,18 +37,15 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                 nome,
                 email,
                 senha,
-                notificacoes,
-                roleIds: selectedRoles
+                role: selectedRoles
             };
             await createUsuario(newUser);
             alert('Usuário cadastrado com sucesso!');
-            atualizarUsuarios();  // Atualiza a lista de usuários
             setNome('');
             setEmail('');
             setSenha('');
             setConfirmarSenha('');
-            setNotificacoes(false);
-            setSelectedRoles([]);
+            setSelectedRoles();
         } catch (error) {
             console.error("Erro ao criar usuário:", error);
         }
@@ -107,33 +99,17 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Notificações</label>
-                        <div className="form-check">
-                            <input
-                                type="checkbox"
-                                className="form-check-input"
-                                id="notificacoes"
-                                checked={notificacoes}
-                                onChange={(e) => setNotificacoes(e.target.checked)}
-                            />
-                            <label className="form-check-label" htmlFor="notificacoes">
-                                Receber notificações
-                            </label>
-                        </div>
-                    </div>
-                    <div className="mb-3">
                         <label className="form-label">Papéis</label>
                         {roles.length > 0 ? (
                             roles.map(role => (
-                                <div key={role.id} className="form-check">
+                                <div key={role} className="form-check">
                                     <input
                                         className="form-check-input"
                                         type="checkbox"
                                         value={role.id}
-                                        checked={selectedRoles.includes(role.id)}
-                                        onChange={() => handleRoleChange(role.id)}
+                                        onChange={() => handleRoleChange(role)}
                                     />
-                                    <label className="form-check-label">{role.nome}</label>
+                                    <label className="form-check-label">{role}</label>
                                 </div>
                             ))
                         ) : (

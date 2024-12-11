@@ -1,38 +1,53 @@
 // src/App.js
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import CardsDashboard from './components/dashboard/CardsDashboard';
-import RolesPage from './pages/RolesPage';
-import UsuariosPage from './pages/UsuariosPage';
-import CondominioPage from "./pages/CondominioPage";
-import NavBar from "./components/template/NavBar";
-import SideBar from "./components/template/SideBar";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {UserProvider} from "./store/UsuarioContext";
-import CondominioDetailsPage from './pages/CondominioDetailsPage';
-import Agendamentos from "./pages/condominio/Agendamentos";
+import Login from "./components/login/LoginForm";
+import GeneralLayout from "./pages/GeneralLayout";
+import UsuariosPage from "./pages/UsuariosPage";
+import CondominioDetailsPage from "./pages/CondominioDetailsPage";
+import CondominioPage from "./pages/CondominioPage";
+import RegisterForm from "./components/login/RegisterForm";
+import LogoutForm from "./components/login/LogoutForm"
+import PrivateRoute from "./components/router/PrivateRoute";
 import Espacos from "./pages/condominio/Espacos";
+import Agendamentos from "./pages/condominio/Agendamentos";
 
 const App = () => {
     return (
         <UserProvider>
             <Router>
-                <div className="min-height-300 bg-primary position-absolute w-100"></div>
-                <SideBar/>
-                <main className="main-content position-relative border-radius-lg ">
-                    <NavBar/>
-                    <div className="container-fluid py-4">
 
-                        <Routes>
-                            {/*<Route path="/" element={<CardsDashboard/>}/>*/}
-                            <Route path="/roles" element={<RolesPage/>}/>
-                            <Route path="/usuarios" element={<UsuariosPage/>}/>
-                            <Route path="/condominio" element={<CondominioPage/>}/>
-                            <Route path="/condominio/:id" element={<CondominioDetailsPage/>}/>
-                            <Route path="/condominio/agendamentos/:id" element={<Agendamentos/>}/>
-                            <Route path="/condominio/espacos/:id" element={<Espacos/>}/>
-                        </Routes>
-                    </div>
-                </main>
+                <Routes>
+                    {/* Rota de login, sem layout completo */}
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<RegisterForm/>}/>
+                    <Route path="/logout" element={<LogoutForm/>}/>
+
+                    {/* Rota para conteúdo interno, com layout completo */}
+                    <Route path="/" element={<GeneralLayout/>}>
+                        <Route
+                            path="/"
+                            element={<PrivateRoute element={<CondominioPage/>}/>}
+                        />
+                        <Route
+                            path="/usuarios"
+                            element={<PrivateRoute element={<UsuariosPage/>}/>}
+                        />
+                        <Route
+                            path="/condominio/:id"
+                            element={<PrivateRoute element={<CondominioDetailsPage/>}/>}
+                        />
+                        <Route
+                            path="/condominio/espacos/:id"
+                            element={<PrivateRoute element={<Espacos/>}/>}
+                        />
+                        <Route
+                            path="/condominio/agendamentos/:id"
+                            element={<PrivateRoute element={<Agendamentos/>}/>}
+                        />
+                    </Route>
+                </Routes>
             </Router>
         </UserProvider>
     )

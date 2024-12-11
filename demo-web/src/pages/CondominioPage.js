@@ -11,6 +11,7 @@ const CondominioPage = () => {
 
     return (
         <div className={'row'}>
+            <h3 className='text-white'>Cadastrar condomínio</h3>
             <div className="col-lg-4">
                 <CondominioForm atualizarCondominios={handleRefresh}/>
             </div>

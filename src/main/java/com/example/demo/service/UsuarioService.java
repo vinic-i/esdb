@@ -1,26 +1,20 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Role;
-import com.example.demo.entity.Usuario;
-import com.example.demo.forms.UsuarioDTO;
-import com.example.demo.repository.RoleRepository;
-import com.example.demo.repository.UsuarioRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.example.demo.entity.Usuario;
+import com.example.demo.forms.UsuarioDTO;
+import com.example.demo.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Autowired
-    private RoleRepository roleRepository;
 
     public Usuario salvarUsuario(UsuarioDTO usuarioDTO) {
         Usuario novoUsuario = new Usuario();
@@ -28,13 +22,7 @@ public class UsuarioService {
         novoUsuario.setEmail(usuarioDTO.getEmail());
         novoUsuario.setSenha(usuarioDTO.getSenha());
 
-        // Busca as roles com base nos IDs do DTO
-        Set<Role> roles = usuarioDTO.getRoleIds().stream()
-                .map(roleId -> roleRepository.findById(roleId)
-                        .orElseThrow(() -> new RuntimeException("Role não encontrada: " + roleId)))
-                .collect(Collectors.toSet());
-
-        novoUsuario.setRoles(roles);
+        novoUsuario.setRole(usuarioDTO.getRole());
         novoUsuario.setDataCriacao(LocalDateTime.now());
         novoUsuario.setDataAtualizacao(LocalDateTime.now());
 
@@ -47,7 +35,7 @@ public class UsuarioService {
         } else if (nome != null) {
             return usuarioRepository.findByNome(nome);
         } else if (email != null) {
-            return usuarioRepository.findByEmail(email);
+            return List.of((Usuario) usuarioRepository.findByEmail(email));
         } else {
             return listarTodos(); // Retorna todos se nenhum filtro for fornecido
         }

@@ -16,7 +16,6 @@ public class Espaco {
     @NotEmpty(message = "O nome do espaço é obrigatório.")
     private String nome;
 
-    @NotEmpty(message = "A descrição do espaço é obrigatória.")
     private String descricao;
 
     @Column(name = "capacidade", nullable = false)
