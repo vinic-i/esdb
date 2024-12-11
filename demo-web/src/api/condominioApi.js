@@ -7,6 +7,10 @@ export const getAllCondominios = () => {
     return api.get(API_URL);
 };
 
+export const getCondominiosByOwner = (ownerId) => {
+    return axios.get(`${API_URL}/owner/${ownerId}`);
+};
+
 export const getCondominioById = (id) => {
     return axios.get(`${API_URL}/${id}`);
 };

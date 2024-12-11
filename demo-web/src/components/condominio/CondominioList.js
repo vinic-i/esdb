@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getAllCondominios, deleteCondominio} from '../../api/condominioApi';
+import {deleteCondominio, getCondominiosByOwner} from '../../api/condominioApi';
 import {Link} from 'react-router-dom';
 
 const CondominioList = ({refreshList}) => {
@@ -8,7 +8,7 @@ const CondominioList = ({refreshList}) => {
     useEffect(() => {
         const fetchCondominios = async () => {
             try {
-                const response = await getAllCondominios();
+                const response = await getCondominiosByOwner();
                 setCondominios(response.data);
             } catch (error) {
                 console.log(error);

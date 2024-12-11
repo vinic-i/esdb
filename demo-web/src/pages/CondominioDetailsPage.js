@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Route, Routes, useParams} from 'react-router-dom';
-import {getCondominioById} from '../api/condominioApi';
 import CondominioDetails from '../components/condominio/CondominioDetails';
 import EspacoForm from '../components/espacos/EspacoForm';
 import EspacoList from '../components/espacos/EspacoList';
@@ -11,6 +10,7 @@ import UsuariosPage from "./UsuariosPage";
 import CondominioPage from "./CondominioPage";
 import Agendamentos from "./condominio/Agendamentos";
 import Espacos from "./condominio/Espacos";
+import {getCondominioById} from "../api/condominioApi";
 
 const CondominioDetailsPage = () => {
     const {id} = useParams(); // Obtém o ID da URL
@@ -21,9 +21,11 @@ const CondominioDetailsPage = () => {
     useEffect(() => {
         const fetchCondominio = async () => {
             try {
+                debugger
                 const response = await getCondominioById(id);
                 setCondominio(response.data);
             } catch (err) {
+                debugger
                 setError("Erro ao carregar os dados do condomínio.");
             } finally {
                 setLoading(false);

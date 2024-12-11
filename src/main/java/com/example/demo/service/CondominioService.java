@@ -49,6 +49,10 @@ public class CondominioService {
         return condominioRepository.save(newCondominio); // Salvando o novo condomínio
     }
 
+    public List<Condominio> getCondominiosByOwner(Long ownerId) {
+        return condominioRepository.findByOwnerId(ownerId);
+    }
+
     // Atualizar um condomínio
     public Condominio updateCondominio(Long id, CondominioDTO condominioDTO, Long userId) {
         // Buscar o condomínio existente pelo ID

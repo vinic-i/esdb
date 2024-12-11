@@ -37,6 +37,12 @@ public class CondominioController {
         return ResponseEntity.ok(condominios);
     }
 
+    @GetMapping("/owner/{ownerId}")
+    public ResponseEntity<List<Condominio>> getCondominiosByOwner(@PathVariable Long ownerId) {
+        List<Condominio> condominios = condominioService.getCondominiosByOwner(ownerId);
+        return ResponseEntity.ok(condominios);
+    }
+
     // Obter um condomínio por ID
     @GetMapping("/{id}")
     public ResponseEntity<Condominio> getCondominioById(@PathVariable Long id) {
