@@ -38,20 +38,33 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Configuração do CORS diretamente no SecurityFilterChain
         http
-                .cors(cors->cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf->csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Define session stateless
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // Permite login sem autenticação
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // Permite registro sem autenticação
-                        .requestMatchers(HttpMethod.OPTIONS, "/auth/register").permitAll() // Permite registro sem autenticação
-                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasRole("ADMIN") // Permite acesso às roles sem autenticação
-                        .requestMatchers(HttpMethod.GET, "/api/roles").permitAll() // Permite acesso às roles sem autenticação
-                        .requestMatchers(HttpMethod.POST, "/api/condominios").hasRole("ADMIN") // Requer papel de ADMIN
-                        .requestMatchers(HttpMethod.GET, "/api/condominios").hasRole("ADMIN")
+                        // Permissões para /auth/login e /auth/register
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/auth/register").permitAll()
+
+                        // Permissões para /api/condominios
+                        .requestMatchers(HttpMethod.GET, "/api/condominios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/condominios/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/condominios/owner/{ownerId}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/condominios/{condominioId}/espacos").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/condominios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/condominios/{id}/{idUser}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/condominios/{id}").hasRole("ADMIN")
+
+                        // Permissões para /api/espacos
+                        .requestMatchers(HttpMethod.GET, "/api/espacos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/espacos/disponibilidade/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/espacos/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/espacos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/espacos/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated() // Requer autenticação para outras rotas
                 )
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class); // Filtro de segurança
 
         return http.build();
     }

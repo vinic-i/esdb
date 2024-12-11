@@ -11,6 +11,8 @@ import CondominioPage from "./pages/CondominioPage";
 import RegisterForm from "./components/login/RegisterForm";
 import LogoutForm from "./components/login/LogoutForm"
 import PrivateRoute from "./components/router/PrivateRoute";
+import Espacos from "./pages/condominio/Espacos";
+import Agendamentos from "./pages/condominio/Agendamentos";
 
 const App = () => {
     return (
@@ -36,6 +38,14 @@ const App = () => {
                         <Route
                             path="/condominio/:id"
                             element={<PrivateRoute element={<CondominioDetailsPage/>}/>}
+                        />
+                        <Route
+                            path="/condominio/espacos/:id"
+                            element={<PrivateRoute element={<Espacos/>}/>}
+                        />
+                        <Route
+                            path="/condominio/agendamentos/:id"
+                            element={<PrivateRoute element={<Agendamentos/>}/>}
                         />
                     </Route>
                 </Routes>

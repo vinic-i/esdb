@@ -18,7 +18,6 @@ const Login = () => {
             return;
         }
         try {
-            // debugger
             const response = await login(email, password);
             localStorage.setItem('authToken', response.data.token);
             userLogin(response.data)

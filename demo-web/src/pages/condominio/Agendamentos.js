@@ -39,9 +39,9 @@ const Agendamentos = () => {
 
                 <h2>Agendamentos para {dataReserva.toISOString().split('T')[0]}</h2>
 
-                <div>
-                    <button onClick={handlePrevDay}>Anterior</button>
-                    <button onClick={handleNextDay}>Próximo</button>
+                <div className="d-flex justify-content-between">
+                    <button className="btn btn-dark" onClick={handlePrevDay}>Anterior</button>
+                    <button className="btn btn-dark" onClick={handleNextDay}>Próximo</button>
                 </div>
 
                 <div>

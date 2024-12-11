@@ -1,21 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {deleteCondominio, getCondominiosByOwner} from '../../api/condominioApi';
 import {Link} from 'react-router-dom';
+import {useUser} from "../../store/UsuarioContext";
 
 const CondominioList = ({refreshList}) => {
     const [condominios, setCondominios] = useState([]);
+    const {user} = useUser(); // Obtenha o usuário do contexto
 
     useEffect(() => {
         const fetchCondominios = async () => {
             try {
-                const response = await getCondominiosByOwner();
+                const response = await getCondominiosByOwner(user.id);
                 setCondominios(response.data);
             } catch (error) {
                 console.log(error);
             }
         };
         fetchCondominios();
-    }, [refreshList]);
+    }, [refreshList, user]);
 
     const handleDelete = async (id) => {
         try {

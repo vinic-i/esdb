@@ -21,11 +21,9 @@ const CondominioDetailsPage = () => {
     useEffect(() => {
         const fetchCondominio = async () => {
             try {
-                debugger
                 const response = await getCondominioById(id);
                 setCondominio(response.data);
             } catch (err) {
-                debugger
                 setError("Erro ao carregar os dados do condomínio.");
             } finally {
                 setLoading(false);

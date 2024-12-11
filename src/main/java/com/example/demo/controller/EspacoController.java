@@ -4,6 +4,7 @@ import com.example.demo.entity.Espaco;
 import com.example.demo.forms.EspacoDTO;
 import com.example.demo.forms.EspacoDisponibilidadeDTO;
 import com.example.demo.service.EspacoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,7 @@ public class EspacoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> salvar(@RequestBody EspacoDTO espacoDTO) {
+    public ResponseEntity<?> salvar(@Valid @RequestBody EspacoDTO espacoDTO) {
         try {
             Espaco newEspaco = espacoService.salvar(espacoDTO);
             return ResponseEntity.ok(newEspaco);
