@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {getAllUsuarios, deleteUsuario} from '../../api/usuarioApi';
-import {useUser} from "../../store/UsuarioContext";
 
 const UsuarioList = ({refreshList}) => {
     const [users, setUsers] = React.useState([]);

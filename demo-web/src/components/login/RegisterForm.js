@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {createUsuario} from "../../api/usuarioApi";
 
 const RegisterForm = () => {
@@ -7,6 +7,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,11 +23,13 @@ const RegisterForm = () => {
                 role: 'ADMIN'
             };
             await createUsuario(newUser);
-            alert('Usuário cadastrado com sucesso!');
             setNome('');
             setEmail('');
             setSenha('');
             setConfirmarSenha('');
+            alert("Usuário cadastrado")
+            navigate('/login');
+
         } catch (error) {
             console.error("Erro ao criar usuário:", error);
         }
@@ -57,7 +60,7 @@ const RegisterForm = () => {
                             </div>
                             <div className="row px-xl-5 px-sm-4 px-3">
                                 <div className="col-3 ms-auto px-1">
-                                    <a className="btn btn-outline-light w-100" href="#">
+                                    <span className="btn btn-outline-light w-100">
                                         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                                             <g stroke="none" fill="none" >
                                                 <g transform="translate(3.000000, 3.000000)" >
@@ -69,10 +72,10 @@ const RegisterForm = () => {
                                                 </g>
                                             </g>
                                         </svg>
-                                    </a>
+                                    </span>
                                 </div>
                                 <div className="col-3 px-1">
-                                    <a className="btn btn-outline-light w-100" href="#">
+                                    <span className="btn btn-outline-light w-100">
                                         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                                             <g stroke="none" fill="none" >
                                                 <g transform="translate(7.000000, 0.564551)" fill="#000000"
@@ -82,10 +85,10 @@ const RegisterForm = () => {
                                                 </g>
                                             </g>
                                         </svg>
-                                    </a>
+                                    </span>
                                 </div>
                                 <div className="col-3 me-auto px-1">
-                                    <a className="btn btn-outline-light w-100" href="#">
+                                    <span className="btn btn-outline-light w-100">
                                         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                                             <g stroke="none" fill="none" >
                                                 <g transform="translate(3.000000, 2.000000)" >
@@ -104,7 +107,7 @@ const RegisterForm = () => {
                                                 </g>
                                             </g>
                                         </svg>
-                                    </a>
+                                    </span>
                                 </div>
                                 <div className="mt-2 position-relative text-center">
                                     <p className="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">

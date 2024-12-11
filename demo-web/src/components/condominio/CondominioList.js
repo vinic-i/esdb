@@ -36,7 +36,7 @@ const CondominioList = ({refreshList}) => {
             <div className="card-body px-0 pt-0 pb-2">
                 <div className="table-responsive p-0">
                     <table className="table align-items-center mb-0">
-                        <thead>
+                        <thead className="text-center">
                         <tr>
                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                 Nome
@@ -53,7 +53,7 @@ const CondominioList = ({refreshList}) => {
                         <tbody>
                         {Array.isArray(condominios) && condominios.length > 0 ? (
                             condominios.map((condominio) => (
-                                <tr key={condominio.id}>
+                                <tr className="text-center" key={condominio.id}>
                                     <td>{condominio.nome}</td>
                                     <td>{condominio.endereco}</td>
                                     <td>{condominio.owner?.nome || 'Sem proprietário'}</td>

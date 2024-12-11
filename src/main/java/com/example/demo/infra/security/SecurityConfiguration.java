@@ -60,8 +60,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/api/espacos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/espacos/disponibilidade/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/espacos/{id}").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/espacos").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/espacos/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/espacos").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/espacos/{id}").permitAll()
                         .anyRequest().authenticated() // Requer autenticação para outras rotas
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class); // Filtro de segurança
@@ -73,6 +73,7 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("http://localhost:3000"); // Define a origem permitida
+        corsConfiguration.addAllowedOrigin("http://localhost:9090"); // Define a origem permitida
         corsConfiguration.addAllowedMethod("*"); // Permite todos os métodos (GET, POST, etc.)
         corsConfiguration.addAllowedHeader("*"); // Permite todos os cabeçalhos
         corsConfiguration.setAllowCredentials(true); // Permite credenciais como cookies

@@ -43,14 +43,14 @@ public class EspacoController {
         return ResponseEntity.ok(espacos);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Espaco> encontrarPorId(@PathVariable Long id) {
         Optional<Espaco> espaco = espacoService.encontrarPorId(id);
         return espaco.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<?> salvar(@Valid @RequestBody EspacoDTO espacoDTO) {
+    public ResponseEntity<?> salvar(@RequestBody EspacoDTO espacoDTO) {
         try {
             Espaco newEspaco = espacoService.salvar(espacoDTO);
             return ResponseEntity.ok(newEspaco);

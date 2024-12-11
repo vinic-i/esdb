@@ -1,14 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import SideBar from "../components/template/SideBar";
 import NavBar from "../components/template/NavBar";
-import {Outlet, Route, Routes} from "react-router-dom";
-import RolesPage from "./RolesPage";
-import UsuariosPage from "./UsuariosPage";
-import CondominioPage from "./CondominioPage";
-import CondominioDetailsPage from "./CondominioDetailsPage";
+import {Outlet} from "react-router-dom";
 
-const GeneralLayout = props => {
+
+const GeneralLayout = () => {
     return (
         <>
             <div className="min-height-300 bg-primary position-absolute w-100"></div>
@@ -24,7 +21,5 @@ const GeneralLayout = props => {
     )
         ;
 };
-
-GeneralLayout.propTypes = {};
 
 export default GeneralLayout;

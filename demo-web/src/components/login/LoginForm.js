@@ -7,22 +7,19 @@ import {useUser} from "../../store/UsuarioContext";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
     const navigate = useNavigate();
-    const {userLogin, user} = useUser();
+    const {userLogin} = useUser();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            setError('Preencha todos os campos');
+            alert('Preencha todos os campos');
             return;
         }
         try {
             const response = await login(email, password);
             localStorage.setItem('authToken', response.data.token);
             userLogin(response.data)
-            alert('Login bem-sucedido!');
-
             navigate('/');
         } catch (error) {
             console.log(error);
@@ -57,11 +54,6 @@ const Login = () => {
                                                    onChange={(e) => setPassword(e.target.value)}
                                             />
                                         </div>
-                                        {/*<div className="form-check form-switch">*/}
-                                        {/*    <input className="form-check-input" type="checkbox" id="rememberMe"/>*/}
-                                        {/*    <label className="form-check-label" htmlFor="rememberMe">Remember*/}
-                                        {/*        me</label>*/}
-                                        {/*</div>*/}
                                         <div className="text-center">
                                             <button type="button"
                                                     onClick={handleLogin}
@@ -100,51 +92,6 @@ const Login = () => {
             </section>
         </main>
     );
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#f0f0f0',
-    },
-    form: {
-        width: '300px',
-        padding: '20px',
-        borderRadius: '5px',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-        backgroundColor: '#fff',
-    },
-    title: {
-        marginBottom: '20px',
-        textAlign: 'center',
-    },
-    inputGroup: {
-        marginBottom: '15px',
-    },
-    input: {
-        width: '100%',
-        padding: '10px',
-        marginTop: '5px',
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-    },
-    button: {
-        width: '100%',
-        padding: '10px',
-        backgroundColor: '#007BFF',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
-    error: {
-        color: 'red',
-        textAlign: 'center',
-        marginBottom: '10px',
-    },
 };
 
 export default Login;

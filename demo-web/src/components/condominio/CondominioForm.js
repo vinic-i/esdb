@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {createCondominio} from '../../api/condominioApi';
 import {useUser} from '../../store/UsuarioContext'; // Importe o contexto do usuário
 

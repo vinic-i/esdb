@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import EspacoForm from "../../components/espacos/EspacoForm";
 import EspacoList from "../../components/espacos/EspacoList";
 import {useParams} from "react-router-dom";
 
-const Espacos = props => {
+const Espacos = () => {
     const {id} = useParams(); // Obtém o ID da URL
     const [refreshEspacos, setRefreshEspacos] = useState(false);
 

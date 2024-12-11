@@ -1,11 +1,10 @@
 // src/App.js
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {UserProvider} from "./store/UsuarioContext";
 import Login from "./components/login/LoginForm";
 import GeneralLayout from "./pages/GeneralLayout";
 import UsuariosPage from "./pages/UsuariosPage";
-import RolesPage from "./pages/LoginPage";
 import CondominioDetailsPage from "./pages/CondominioDetailsPage";
 import CondominioPage from "./pages/CondominioPage";
 import RegisterForm from "./components/login/RegisterForm";

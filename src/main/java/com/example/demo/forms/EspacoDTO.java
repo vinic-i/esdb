@@ -6,7 +6,6 @@ public class EspacoDTO {
     @NotEmpty(message = "O nome do espaço é obrigatório.")
     private String nome;
 
-    @NotEmpty(message = "A descrição do espaço é obrigatória.")
     private String descricao;
     private int capacidade;
 
