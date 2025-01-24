@@ -1,15 +1,15 @@
 package com.example.demo.forms;
 
 public class EspacoDisponibilidadeDTO {
-    private Long id; // Identificador do espaço
-    private String nome; // Nome do espaço
-    private String descricao; // Descrição do espaço
-    private int capacidade; // Capacidade do espaço
-    private boolean disponibilidade; // Disponibilidade do espaço (se está disponível para reserva)
-    private boolean temReserva; // Se o espaço já tem uma reserva para a data solicitada
-    private String usuarioReserva; // Nome do usuário que fez a reserva (se houver reserva)
+    private Long id;
+    private Long idReserva;
+    private String nome;
+    private String descricao;
+    private int capacidade;
+    private boolean disponibilidade;
+    private boolean temReserva;
+    private String usuarioReserva;
 
-    // Getters e setters
 
     public Long getId() {
         return id;
@@ -17,6 +17,13 @@ public class EspacoDisponibilidadeDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public Long getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
     }
 
     public String getNome() {

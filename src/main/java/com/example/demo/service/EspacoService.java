@@ -44,6 +44,7 @@ public class EspacoService {
             List<Reserva> reservas = reservaRepository.findByEspacoIdAndDataReservaBetween(espaco.getId(), inicioDia, fimDia);
             boolean temReserva = !reservas.isEmpty();  // Se houver qualquer reserva, o espaço tem reserva
             String usuarioReserva = temReserva ? reservas.get(0).getUsuario().getNome() : null;  // Nome do usuário da primeira reserva
+            Long idReserva = temReserva ? reservas.get(0).getId() : null;  // ID da primeira reserva, se houver
 
             EspacoDisponibilidadeDTO dto = new EspacoDisponibilidadeDTO();
             dto.setId(espaco.getId());
@@ -53,6 +54,7 @@ public class EspacoService {
             dto.setDisponibilidade(temReserva ? false : true);  // Se tiver reserva, não está disponível
             dto.setTemReserva(temReserva);
             dto.setUsuarioReserva(usuarioReserva);
+            dto.setIdReserva(idReserva);  // Adiciona o ID da reserva, se houver
 
             resultado.add(dto);
         }

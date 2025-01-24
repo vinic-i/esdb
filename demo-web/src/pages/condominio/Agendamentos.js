@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {listarEspacosDisponiveis} from "../../api/espacoApi";
 import {createCondominio} from "../../api/condominioApi";
-import {createReserva} from "../../api/reservaApi";
+import {createReserva, deleteReserva} from "../../api/reservaApi";
 import {useUser} from "../../store/UsuarioContext"; // Corrigir a importação da função
 const Agendamentos = () => {
     const {id} = useParams(); // Obtém o ID do condomínio
@@ -51,6 +51,22 @@ const Agendamentos = () => {
             setEspacos(response.data);
         } catch (error) {
             console.log(error);
+        }
+    };
+
+    const handleCancelReservation = async (e, reservaId) => {
+        e.preventDefault();
+        try {
+            // Chama a API para cancelar a reserva
+            await deleteReserva(reservaId); // Supondo que você tenha um método `cancelarReserva` na sua API
+            alert('Reserva cancelada com sucesso!');
+
+            // Atualiza os espaços após o cancelamento
+            const formattedDate = dataReserva.toISOString().split('T')[0];
+            const response = await listarEspacosDisponiveis(id, formattedDate);
+            setEspacos(response.data);
+        } catch (error) {
+            console.log('Erro ao cancelar reserva:', error);
         }
     };
 

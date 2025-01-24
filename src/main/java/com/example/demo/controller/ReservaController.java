@@ -39,7 +39,7 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        reservaService.deletar(id);
+        reservaService.cancelarReserva(id);
         return ResponseEntity.noContent().build();
     }
 }
