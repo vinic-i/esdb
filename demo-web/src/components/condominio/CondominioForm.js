@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {createCondominio} from '../../api/condominioApi';
-import {useUser} from '../../store/UsuarioContext'; // Importe o contexto do usuário
+import {useUser} from '../../store/UsuarioContext';
 
 const CondominioForm = ({atualizarCondominios}) => {
     const [nome, setNome] = useState('');
@@ -8,7 +8,7 @@ const CondominioForm = ({atualizarCondominios}) => {
     const [bloco, setBloco] = useState('');
     const [apartamento, setApartamento] = useState('');
     const [descricao, setDescricao] = useState('');
-    const {user} = useUser(); // Obtenha o usuário do contexto
+    const {user} = useUser();
 
 
     const handleSubmit = async (e) => {
@@ -20,12 +20,11 @@ const CondominioForm = ({atualizarCondominios}) => {
                 bloco,
                 apartamento,
                 descricao,
-                ownerId: user.id // Defina o ownerId como o id do usuário do contexto
+                ownerId: user.id
             };
             await createCondominio(newCondominio);
             alert('Condomínio cadastrado com sucesso!');
-            atualizarCondominios(); // Atualiza a lista de condomínios
-            // Reseta os campos
+            atualizarCondominios();
             setNome('');
             setEndereco('');
             setApartamento('');
@@ -89,7 +88,7 @@ const CondominioForm = ({atualizarCondominios}) => {
                             onChange={(e) => setDescricao(e.target.value)}
                         />
                     </div>
-                    <p>Proprietário: {user ? user.nome : 'Sem usuário'}</p> {/* Mostra o nome do proprietário selecionado */}
+                    <p>Proprietário: {user ? user.nome : 'Sem usuário'}</p>
                     <button type="submit" className="btn btn-primary mt-2">
                         Cadastrar
                     </button>

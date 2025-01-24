@@ -6,7 +6,7 @@ const UsuariosPage = () => {
     const [refreshList, setRefreshList] = useState(false);
 
     const atualizarUsuarios = () => {
-        setRefreshList((prev) => !prev);
+        setRefreshList(!refreshList);
     };
 
     return (

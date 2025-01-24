@@ -54,7 +54,7 @@ const UsuarioList = ({refreshList}) => {
                                         </div>
                                     </td>
                                     <td className="text-center">
-                                        <span>{user.roles && user.roles.length > 0 ? user.roles[0].nome : 'Sem papel'}</span>
+                                        <span>{user.role}</span>
                                     </td>
                                     <td className="align-middle text-center">
                                         {/*<button className="btn btn-link text-secondary" onClick={() => login(user)}*/}

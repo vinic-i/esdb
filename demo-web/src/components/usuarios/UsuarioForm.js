@@ -41,11 +41,12 @@ const UsuarioForm = ({atualizarUsuarios}) => {
             };
             await createUsuario(newUser);
             alert('Usuário cadastrado com sucesso!');
+            atualizarUsuarios()
             setNome('');
             setEmail('');
             setSenha('');
             setConfirmarSenha('');
-            setSelectedRoles();
+            setSelectedRoles(null);
         } catch (error) {
             console.error("Erro ao criar usuário:", error);
         }
@@ -102,14 +103,17 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                         <label className="form-label">Papéis</label>
                         {roles.length > 0 ? (
                             roles.map(role => (
-                                <div key={role} className="form-check">
+                                <div key={role.id} className="form-check">
                                     <input
                                         className="form-check-input"
-                                        type="checkbox"
-                                        value={role.id}
-                                        onChange={() => handleRoleChange(role)}
+                                        type="radio"
+                                        name="role" // Radio buttons devem ter o mesmo "name" para funcionar em grupo
+                                        value={role}
+                                        checked={selectedRoles === role} // Marca o botão como selecionado
+                                        onChange={() => handleRoleChange(role)} // Atualiza o estado com a role selecionada
                                     />
-                                    <label className="form-check-label">{role}</label>
+                                    <label
+                                        className="form-check-label">{role}</label> {/* Usar role.name para o nome da role */}
                                 </div>
                             ))
                         ) : (
