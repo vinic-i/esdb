@@ -20,7 +20,7 @@ public class CondominioControllerTests {
 
     @Test
     public void shouldReturnListOfCondominiums() throws Exception {
-        mockMvc.perform(get("/api/condominiums"))
+        mockMvc.perform(get("/api/condominios"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").isNotEmpty());
     }

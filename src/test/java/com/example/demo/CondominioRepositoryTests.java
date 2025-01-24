@@ -31,7 +31,7 @@ public class CondominioRepositoryTests {
 
     @Test
     public void shouldSaveAndFindCondominium() {
-        Condominio condo = new Condominio("Condominio teste", "Rua dos testes", null, null, null, new Usuario);
+        Condominio condo = new Condominio("Condominio teste", "Rua dos testes", null, null, null, new Usuario());
         repository.save(condo);
 
         Optional<Condominio> foundCondo = repository.findById(condo.getId());
