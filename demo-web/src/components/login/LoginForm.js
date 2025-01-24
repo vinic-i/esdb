@@ -7,13 +7,14 @@ import {useUser} from "../../store/UsuarioContext";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const {userLogin} = useUser();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (!email || !password) {
-            alert('Preencha todos os campos');
+        if (email === '' || password === '') {
+            setError('Preencha todos os campos');
             return;
         }
         try {
@@ -22,6 +23,7 @@ const Login = () => {
             userLogin(response.data)
             navigate('/');
         } catch (error) {
+            setError('Email e/ou senha incorretos');
             console.log(error);
         }
     };
@@ -48,11 +50,15 @@ const Login = () => {
                                                    onChange={(e) => setEmail(e.target.value)}/>
                                         </div>
                                         <div className="mb-3">
-                                            <input type="password" className="form-control form-control-lg"
-                                                   placeholder="Senha"
-                                                   aria-label="Password" value={password}
-                                                   onChange={(e) => setPassword(e.target.value)}
+                                            <input
+                                                type="password"
+                                                className="form-control form-control-lg"
+                                                placeholder="Senha"
+                                                aria-label="Password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
                                             />
+                                            {error && <p style={{color: 'red', marginTop: '5px'}}>{error}</p>}
                                         </div>
                                         <div className="text-center">
                                             <button type="button"
