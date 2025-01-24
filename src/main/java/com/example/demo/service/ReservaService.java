@@ -53,18 +53,4 @@ public class ReservaService {
         reservaRepository.deleteById(id);
     }
 
-    public void cancelarReserva(Long reservaId) {
-        Optional<Reserva> reserva = reservaRepository.findById(reservaId);
-        if (reserva.isPresent()) {
-            Reserva reservaExistente = reserva.get();
-            Espaco espaco = reservaExistente.getEspaco();
-
-            deletar(reservaId);
-
-            espaco.setDisponibilidade(true);
-            espacoRepository.save(espaco);
-        }
-    }
-
-
 }

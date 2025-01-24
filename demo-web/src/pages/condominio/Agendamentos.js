@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {listarEspacosDisponiveis} from "../../api/espacoApi";
+import {getAllEspacos, listarEspacosDisponiveis} from "../../api/espacoApi";
 import {createCondominio} from "../../api/condominioApi";
-import {createReserva, deleteReserva} from "../../api/reservaApi";
-import {useUser} from "../../store/UsuarioContext"; // Corrigir a importação da função
+import {createReserva, deleteReserva, getAllReservas} from "../../api/reservaApi";
+import {useUser} from "../../store/UsuarioContext";
 const Agendamentos = () => {
-    const {id} = useParams(); // Obtém o ID do condomínio
-    const [espacos, setEspacos] = useState([]); // Lista de espaços
-    const [dataReserva, setDataReserva] = useState(new Date()); // Data atual para consulta
+    const {id} = useParams();
+    const [espacos, setEspacos] = useState([]);
+    const [dataReserva, setDataReserva] = useState(new Date());
     const {user} = useUser();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Agendamentos = () => {
             try {
                 const formattedDate = dataReserva.toISOString().split('T')[0];
                 const response = await listarEspacosDisponiveis(id, formattedDate);
-                setEspacos(response.data); // Atualiza a lista de espaços com as disponibilidades
+                setEspacos(response.data);
             } catch (error) {
                 console.error("Erro ao carregar espaços:", error);
             }
@@ -25,13 +25,13 @@ const Agendamentos = () => {
 
     const handleNextDay = () => {
         const nextDay = new Date(dataReserva);
-        nextDay.setDate(nextDay.getDate() + 1); // Avança um dia
+        nextDay.setDate(nextDay.getDate() + 1);
         setDataReserva(nextDay);
     };
 
     const handlePrevDay = () => {
         const prevDay = new Date(dataReserva);
-        prevDay.setDate(prevDay.getDate() - 1); // Retrocede um dia
+        prevDay.setDate(prevDay.getDate() - 1);
         setDataReserva(prevDay);
     };
 
@@ -57,11 +57,10 @@ const Agendamentos = () => {
     const handleCancelReservation = async (e, reservaId) => {
         e.preventDefault();
         try {
-            // Chama a API para cancelar a reserva
-            await deleteReserva(reservaId); // Supondo que você tenha um método `cancelarReserva` na sua API
+            await deleteReserva(reservaId);
             alert('Reserva cancelada com sucesso!');
 
-            // Atualiza os espaços após o cancelamento
+
             const formattedDate = dataReserva.toISOString().split('T')[0];
             const response = await listarEspacosDisponiveis(id, formattedDate);
             setEspacos(response.data);
@@ -71,9 +70,9 @@ const Agendamentos = () => {
     };
 
     const formattedDate = new Intl.DateTimeFormat('pt-BR', {
-        day: '2-digit', // Dia com 2 dígitos
-        month: 'long',  // Nome completo do mês
-        year: 'numeric' // Ano completo
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
     }).format(dataReserva);
 
     return (
@@ -130,10 +129,19 @@ const Agendamentos = () => {
                                             <p>{espaco.usuarioReserva}</p>
                                         )}
                                     </td>
-                                    <td className='text-center  align-content-center'>
-                                        <button onClick={(e) => handleReservation(e, espaco.id)}
-                                                className='btn btn-primary m-0'>Reservar
-                                        </button>
+                                    <td className='text-center align-content-center'>
+                                        {espaco.temReserva ? (
+                                            <button
+                                                onClick={(e) => handleCancelReservation(e, espaco.idReserva)}
+                                                className="btn btn-danger m-0">
+                                                Cancelar
+                                            </button>
+                                        ) : (
+                                            <button onClick={(e) => handleReservation(e, espaco.id)}
+                                                    className="btn btn-primary m-0">
+                                                Reservar
+                                            </button>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

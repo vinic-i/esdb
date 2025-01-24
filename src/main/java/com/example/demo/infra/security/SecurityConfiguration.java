@@ -72,6 +72,7 @@ public class SecurityConfiguration {
 
 
                         // Permissões para /api/reservas
+                        .requestMatchers(HttpMethod.GET, "/api/reservas").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/reservas").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/reservas/{id}").permitAll()
                         .anyRequest().authenticated() // Requer autenticação para outras rotas
