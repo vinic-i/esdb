@@ -37,8 +37,11 @@ public class EspacoService {
         List<Espaco> espacos = espacoRepository.findByCondominioId(condominioId);  // Lista de espaços do condomínio
         List<EspacoDisponibilidadeDTO> resultado = new ArrayList<>();
 
+        LocalDateTime inicioDia = dataReserva.toLocalDate().atStartOfDay();
+        LocalDateTime fimDia = inicioDia.plusDays(1).minusNanos(1);
+
         for (Espaco espaco : espacos) {
-            List<Reserva> reservas = reservaRepository.findByEspacoIdAndDataReserva(espaco.getId(), dataReserva);
+            List<Reserva> reservas = reservaRepository.findByEspacoIdAndDataReservaBetween(espaco.getId(), inicioDia, fimDia);
             boolean temReserva = !reservas.isEmpty();  // Se houver qualquer reserva, o espaço tem reserva
             String usuarioReserva = temReserva ? reservas.get(0).getUsuario().getNome() : null;  // Nome do usuário da primeira reserva
 

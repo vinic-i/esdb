@@ -48,8 +48,8 @@ const UsuarioList = ({refreshList}) => {
                                     <td>
                                         <div className="d-flex px-2 py-1">
                                             <div className="d-flex flex-column justify-content-center">
-                                                <h6 className="mb-0 text-sm">{user.nome}</h6>
-                                                <p className="text-xs text-secondary mb-0">{user.email}</p>
+                                                <h6 className="mb-0 text-sm">{user?.nome}</h6>
+                                                <p className="text-xs text-secondary mb-0">{user?.email}</p>
                                             </div>
                                         </div>
                                     </td>

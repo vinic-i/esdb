@@ -65,6 +65,14 @@ public class SecurityConfiguration {
 
                         // Permissões para /api/roles
                         .requestMatchers(HttpMethod.GET, "/api/roles").permitAll()
+
+                        // Permissões para /api/usuarios
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios/search").permitAll()
+
+
+                        // Permissões para /api/reservas
+                        .requestMatchers(HttpMethod.POST, "/api/reservas").permitAll()
                         .anyRequest().authenticated() // Requer autenticação para outras rotas
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class); // Filtro de segurança

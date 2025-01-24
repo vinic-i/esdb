@@ -1,8 +1,10 @@
-// src/components/template/NavBar.js
 import React from 'react';
-import {Link} from 'react-router-dom'; // Adicione esta linha
+import {Link} from 'react-router-dom';
+import {useUser} from "../../store/UsuarioContext";
 
 const NavBar = () => {
+    const {user} = useUser();
+
     return (
         <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
              data-scroll="false">
@@ -13,7 +15,7 @@ const NavBar = () => {
                                                                    >Pages</span></li>
                         <li className="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
                     </ol>
-                    <h6 className="font-weight-bolder text-white mb-0">Dashboard</h6>
+                    <h6 className="font-weight-bolder text-white mb-0">{user?.nome} - {user?.email}</h6>
                 </nav>
                 <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div className="ms-md-auto pe-md-3 d-flex align-items-center">
