@@ -1,8 +1,13 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from "../../static/logo.svg";
+import {useUser} from "../../store/UsuarioContext";
+import CondominioForm from "../condominio/CondominioForm";
+import CondominioList from "../condominio/CondominioList";
 
 const SideBar = () => {
+    const {user} = useUser();
+
     return (
         <aside
             className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
@@ -44,15 +49,21 @@ const SideBar = () => {
                             <span className="nav-link-text ms-1">Condomínio</span>
                         </Link>
                     </li>
-                    <li className="nav-item">
-                        <Link to="/usuarios" className="nav-link">
-                            <div
-                                className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
-                            </div>
-                            <span className="nav-link-text ms-1">Cadastros de Usuários</span>
-                        </Link>
-                    </li>
+                    {user && user.role === 'ADMIN' ? (
+                        <li className="nav-item">
+                            <Link to="/usuarios" className="nav-link">
+                                <div
+                                    className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i className="ni ni-single-02 text-success text-sm opacity-10"></i>
+                                </div>
+                                <span className="nav-link-text ms-1">Cadastro de Usuários</span>
+                            </Link>
+                        </li>
+                    )  : (
+                        <div>
+                        </div>
+                    )}
+
                     {/*<li className="nav-item">*/}
                     {/*    <Link to="/login" className="nav-link">*/}
                     {/*        <div*/}
