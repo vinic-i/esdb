@@ -5,7 +5,7 @@ import {useUser} from "../../store/UsuarioContext";
 
 const CondominioList = ({refreshList}) => {
     const [condominios, setCondominios] = useState([]);
-    const {user} = useUser(); // Obtenha o usuário do contexto
+    const {user} = useUser();
 
     useEffect(() => {
         const fetchCondominios = async () => {

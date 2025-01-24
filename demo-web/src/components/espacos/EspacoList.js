@@ -22,7 +22,6 @@ const EspacoList = ({ condominioId, refreshList }) => {
     const handleDeleteEspaco = async (id) => {
         try {
             await deleteEspaco(id);
-            // Atualiza a lista de espaços após a exclusão
             setEspacos(espacos.filter(espaco => espaco.id !== id));
             alert('Espaço excluído com sucesso.');
         } catch (error) {

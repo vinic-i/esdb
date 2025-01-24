@@ -6,8 +6,8 @@ public class ReservaDTO {
 
     private Long id;
     private LocalDateTime dataReserva;
-    private Long usuarioId;  // Apenas o id do usuário
-    private Long espacoId;   // Apenas o id do espaço
+    private Long usuarioId;
+    private Long espacoId;
     private String status;
 
     public ReservaDTO() {
@@ -21,7 +21,6 @@ public class ReservaDTO {
         this.status = status;
     }
 
-    // Getters e setters
     public Long getId() {
         return id;
     }

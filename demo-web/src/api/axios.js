@@ -13,7 +13,6 @@ api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('authToken');
         if (token) {
-            // Adiciona o token JWT ao cabeçalho Authorization
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;

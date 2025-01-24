@@ -6,7 +6,7 @@ const CardItem = ({
                       amount = 0,
                       quantidade = 0,
                       icon = 'ni ni-money-coins text-lg opacity-10',
-                      iconContainerClass = 'bg-gradient-primary shadow-primary' // Classe padrão do contêiner do ícone
+                      iconContainerClass = 'bg-gradient-primary shadow-primary'
 
                   }) => {
     return (

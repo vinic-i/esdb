@@ -12,7 +12,7 @@ const EspacoForm = ({ condominioId, atualizarEspacos }) => {
             const newEspaco = { nome, descricao, capacidade, condominioId };
             await createEspaco(newEspaco);
             alert('Espaço cadastrado com sucesso!');
-            atualizarEspacos(); // Atualiza a lista de espaços
+            atualizarEspacos();
             setNome('');
             setDescricao('');
             setCapacidade(0);

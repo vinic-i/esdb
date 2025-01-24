@@ -107,10 +107,10 @@ const UsuarioForm = ({atualizarUsuarios}) => {
                                     <input
                                         className="form-check-input"
                                         type="radio"
-                                        name="role" // Radio buttons devem ter o mesmo "name" para funcionar em grupo
+                                        name="role"
                                         value={role}
-                                        checked={selectedRoles === role} // Marca o botão como selecionado
-                                        onChange={() => handleRoleChange(role)} // Atualiza o estado com a role selecionada
+                                        checked={selectedRoles === role}
+                                        onChange={() => handleRoleChange(role)}
                                     />
                                     <label
                                         className="form-check-label">{role}</label> {/* Usar role.name para o nome da role */}

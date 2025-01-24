@@ -5,7 +5,7 @@ import CardsDashboard from "../components/dashboard/CardsDashboard";
 import {getCondominioById} from "../api/condominioApi";
 
 const CondominioDetailsPage = () => {
-    const {id} = useParams(); // Obtém o ID da URL
+    const {id} = useParams();
     const [condominio, setCondominio] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

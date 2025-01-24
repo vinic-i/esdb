@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {api} from './axios'
 
-const API_URL = 'http://localhost:8080/api/usuarios'; // Ajuste a URL conforme necessário
-const API_URL_CADASTRO = 'http://localhost:8080/auth'; // Ajuste a URL conforme necessário
+const API_URL = 'http://localhost:8080/api/usuarios';
+const API_URL_CADASTRO = 'http://localhost:8080/auth';
 
 
 export const getAllUsuarios = () => {
@@ -22,7 +22,7 @@ export const createUsuario = (usuario) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        withCredentials: true, // Certifique-se de que isso seja necessário
+        withCredentials: true,
     });
 };
 

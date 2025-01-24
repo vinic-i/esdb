@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/roles'; // Ajuste a URL conforme necessário
+const API_URL = 'http://localhost:8080/api/roles';
 
 export const getAllRoles = () => {
     return axios.get(API_URL);

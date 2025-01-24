@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importando hook de navegação
+import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
-    const navigate = useNavigate(); // Hook para navegação
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Remove o token do localStorage (ou sessionStorage)
         localStorage.removeItem('authToken');
         
-        // Redireciona o usuário para a página de login
         navigate('/login');
     }, [navigate]);
 

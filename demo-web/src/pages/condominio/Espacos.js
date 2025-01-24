@@ -4,7 +4,7 @@ import EspacoList from "../../components/espacos/EspacoList";
 import {useParams} from "react-router-dom";
 
 const Espacos = () => {
-    const {id} = useParams(); // Obtém o ID da URL
+    const {id} = useParams();
     const [refreshEspacos, setRefreshEspacos] = useState(false);
 
     const atualizarEspacos = () => {

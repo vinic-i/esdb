@@ -8,7 +8,7 @@ export const getAllEspacos = () => {
 
 export const listarEspacosDisponiveis = (idCondominio, dateRequest) => {
     return axios.get(`${API_URL}/disponibilidade/${idCondominio}`, {
-        params: { dataReserva: dateRequest } // Passando a data como parâmetro na URL
+        params: { dataReserva: dateRequest }
     });
 };
 

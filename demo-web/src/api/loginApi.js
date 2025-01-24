@@ -1,6 +1,6 @@
 import {api} from './axios'
 
-const API_URL = '/auth/login'; // Ajuste a URL conforme necessário
+const API_URL = '/auth/login';
 
 export const login = (email, password) => {
 

@@ -7,7 +7,7 @@ const AdicionarAdm = ({condominio}) => {
     const [administradoreIds, setAdministradoreIds] = useState([]);
     const [params, setParams] = useState('');
     const [usuariosEncontrados, setUsuariosEncontrados] = useState([]);
-    const {user} = useUser(); // Obtenha o usuário do contexto
+    const {user} = useUser();
 
     // setAdministradoreIds(condominio.administradores)
     const handleSearch = async (e) => {
@@ -30,8 +30,6 @@ const AdicionarAdm = ({condominio}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            //Idealmente poderia fazer ...condominio aqui, porém o retorno do get
-            // tem como modelo a entidade condominio e não o DTO, e o post/put é com DTO
             const condominioAtualizado = {
                 nome: condominio.nome,
                 endereco: condominio.endereco,
