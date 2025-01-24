@@ -92,7 +92,7 @@ public class Condominio {
         this.bloco = bloco;
     }
 
-    public String setApartamento() {
+    public String getApartamento() {
         return apartamento;
     }
 
