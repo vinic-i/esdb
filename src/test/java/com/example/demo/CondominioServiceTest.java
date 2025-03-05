@@ -27,15 +27,13 @@ public class CondominioServiceTest {
         Usuario owner = new Usuario("Maria Oliveira", "maria.oliveira@example.com", "senha123", UserRole.ADMIN, true);
         usuarioRepository.save(owner);
 
-        Condominio condominio = new Condominio("Condomínio Solar", "Rua das Flores, 123", "Bloco A", "Apto 101", "Condomínio com excelente estrutura.", owner);
+        Condominio condominio = new Condominio("Condomínio Solar", "Rua das Flores, 123", "Condomínio com excelente estrutura.", owner);
 
         condominioRepository.save(condominio);
 
         assertNotNull(condominio.getId(), "O ID do condomínio não deve ser nulo após o salvamento.");
         assertEquals("Condomínio Solar", condominio.getNome(), "O nome do condomínio deve ser 'Condomínio Solar'.");
         assertEquals("Rua das Flores, 123", condominio.getEndereco(), "O endereço do condomínio deve ser 'Rua das Flores, 123'.");
-        assertEquals("Bloco A", condominio.getBloco(), "O bloco do condomínio deve ser 'Bloco A'.");
-        assertEquals("Apto 101", condominio.getApartamento(), "O apartamento do condomínio deve ser 'Apto 101'.");
         assertEquals("Condomínio com excelente estrutura.", condominio.getDescricao(), "A descrição do condomínio deve ser 'Condomínio com excelente estrutura.'");
         assertEquals(owner, condominio.getOwner(), "O proprietário do condomínio deve ser 'Maria Oliveira'.");
     }

@@ -20,12 +20,6 @@ public class Condominio {
     @NotEmpty(message = "O endereço é obrigatório.")
     private String endereco;
 
-    @Column(name = "bloco")
-    private String bloco;
-
-    @Column(name = "apartamento")
-    private String apartamento;
-
     @Column(name = "descricao")
     private String descricao;
 
@@ -34,7 +28,8 @@ public class Condominio {
     private Usuario owner;
 
     @OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Residencia> residencias = new HashSet<>();
+    @JsonManagedReference
+    private Set<Bloco> bloco = new HashSet<>();
 
     @OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -51,11 +46,9 @@ public class Condominio {
     public Condominio() {
     }
 
-    public Condominio(String nome, String endereco, String bloco, String apartamento, String descricao, Usuario owner) {
+    public Condominio(String nome, String endereco, String descricao, Usuario owner) {
         this.nome = nome;
         this.endereco = endereco;
-        this.bloco = bloco;
-        this.apartamento = apartamento;
         this.descricao = descricao;
         this.owner = owner;
     }
@@ -84,22 +77,6 @@ public class Condominio {
         this.endereco = endereco;
     }
 
-    public String getBloco() {
-        return bloco;
-    }
-
-    public void setBloco(String bloco) {
-        this.bloco = bloco;
-    }
-
-    public String getApartamento() {
-        return apartamento;
-    }
-
-    public void setApartamento(String apartamento) {
-        this.apartamento = Condominio.this.apartamento;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -116,12 +93,12 @@ public class Condominio {
         this.owner = owner;
     }
 
-    public Set<Residencia> getResidencias() {
-        return residencias;
+    public Set<Bloco> getBloco() {
+        return bloco;
     }
 
-    public void setResidencias(Set<Residencia> residencias) {
-        this.residencias = residencias;
+    public void setBloco(Set<Bloco> bloco) {
+        this.bloco = bloco;
     }
 
     public Set<Espaco> getEspacos() {

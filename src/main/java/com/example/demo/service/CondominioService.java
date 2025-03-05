@@ -36,13 +36,10 @@ public class CondominioService {
         Condominio newCondominio = new Condominio();
         newCondominio.setNome(condominioDTO.getNome());
         newCondominio.setEndereco(condominioDTO.getEndereco());
-        newCondominio.setBloco(condominioDTO.getBloco());
-        newCondominio.setApartamento(condominioDTO.getApartamento());
         newCondominio.setDescricao(condominioDTO.getDescricao());
         newCondominio.setOwner(owner); // Aqui setamos o objeto de usuário
 
         List<Residencia> residencias = residenciaRepository.findAllById(condominioDTO.getResidenciaIds());
-        newCondominio.setResidencias(new HashSet<>(residencias));
         List<Usuario> administradores = usuarioRepository.findAllById(condominioDTO.getAdministradoreIds());
         newCondominio.setAdministradores(new HashSet<>(administradores));
 
@@ -68,8 +65,6 @@ public class CondominioService {
         // Atualizar os dados do condomínio com as informações do DTO
         existingCondominio.setNome(condominioDTO.getNome());
         existingCondominio.setEndereco(condominioDTO.getEndereco());
-        existingCondominio.setBloco(condominioDTO.getBloco());
-        existingCondominio.setApartamento(condominioDTO.getApartamento());
         existingCondominio.setDescricao(condominioDTO.getDescricao());
 
         // Atualizar o proprietário se necessário
@@ -79,10 +74,8 @@ public class CondominioService {
 
         // Atualizar as residências associadas ao condomínio
         // Limpa as residências existentes
-        existingCondominio.getResidencias().clear();
         // Adiciona as novas residências
         List<Residencia> residencias = residenciaRepository.findAllById(condominioDTO.getResidenciaIds());
-        existingCondominio.getResidencias().addAll(residencias);
 
         // Atualizar a lista de administradores
         existingCondominio.getAdministradores().clear(); // Limpa os administradores existentes

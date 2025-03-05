@@ -50,6 +50,7 @@ public class SecurityConfiguration {
                         // Permissões para /api/condominios
                         .requestMatchers(HttpMethod.GET, "/api/condominios").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/condominios/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/condominios/owner").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/condominios/owner/{ownerId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/condominios/{condominioId}/espacos").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/condominios").hasRole("ADMIN")

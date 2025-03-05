@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.enums.TipoResidencia;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -19,8 +20,11 @@ public class Residencia {
     @NotEmpty(message = "O número da residência é obrigatório.")
     private String numero;
 
-    @NotEmpty(message = "O bloco da residência é obrigatório.")
-    private String bloco; // Atributo adicional para bloco
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bloco_id", nullable = false)
+    @JsonBackReference // Evita a serialização recursiva
+    private Bloco bloco; // Agora, estamos relacionando Residencia com Bloco através do id
 
     @Enumerated(EnumType.STRING) // Para armazenar como string no banco de dados
     @Column(name = "tipo", nullable = false)
@@ -41,20 +45,15 @@ public class Residencia {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
-    @ManyToOne // Indica que muitos Espacos pertencem a um Condominio
-    @JoinColumn(name = "condominio_id", nullable = false)
-    private Condominio condominio;
-
     public Residencia() {
     }
 
-    public Residencia(String numero, String bloco, TipoResidencia tipo, Condominio condominio) {
+    public Residencia(String numero, Bloco bloco, TipoResidencia tipo) {
         this.numero = numero;
         this.bloco = bloco; // Inicializando bloco
         this.tipo = tipo;
         this.dataRegistro = LocalDateTime.now();
         this.dataAtualizacao = LocalDateTime.now();
-        this.condominio = condominio;
     }
 
     // Getters e Setters
@@ -75,11 +74,11 @@ public class Residencia {
         this.numero = numero;
     }
 
-    public String getBloco() {
+    public Bloco getBloco() {
         return bloco; // Getter para bloco
     }
 
-    public void setBloco(String bloco) {
+    public void setBloco(Bloco bloco) {
         this.bloco = bloco; // Setter para bloco
     }
 
@@ -123,13 +122,5 @@ public class Residencia {
 
     public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
-    }
-
-    public Condominio getCondominio() {
-        return condominio;
-    }
-
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
     }
 }

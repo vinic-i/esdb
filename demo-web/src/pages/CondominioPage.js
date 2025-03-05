@@ -13,22 +13,26 @@ const CondominioPage = () => {
 
     return (
         <div>
-            {user && user.role === 'ADMIN' ? (
-                <div className='row'>
-                    <h3 className='text-white'>Cadastrar condomínio</h3>
-                    <div className="col-lg-4 mb-3">
-                        <CondominioForm atualizarCondominios={handleRefresh}/>
-                    </div>
-                    <div className="col-lg-8">
-                        <CondominioList refreshList={refreshList}/>
-                    </div>
-                </div>
-            ) : (
-                <div>
-                    <h3 className='text-white'>Seus condomínios</h3>
-                    <CondominioList refreshList={refreshList}/>
-                </div>
-            )}
+            <div>
+                <h3 className='text-white'>Seus condomínios</h3>
+                <CondominioList refreshList={refreshList}/>
+            </div>
+            {/*{user && user.role === 'ADMIN' ? (*/}
+            {/*    <div className='row'>*/}
+            {/*        <h3 className='text-white'>Cadastrar condomínio</h3>*/}
+            {/*        <div className="col-lg-4 mb-3">*/}
+            {/*            <CondominioForm atualizarCondominios={handleRefresh}/>*/}
+            {/*        </div>*/}
+            {/*        <div className="col-lg-8">*/}
+            {/*            <CondominioList refreshList={refreshList}/>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*) : (*/}
+            {/*    <div>*/}
+            {/*        <h3 className='text-white'>Seus condomínios</h3>*/}
+            {/*        <CondominioList refreshList={refreshList}/>*/}
+            {/*    </div>*/}
+            {/*)}*/}
         </div>
     )
         ;
