@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const CardsDashboard = props => {
     return (
         <div className="row">
-            <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div className="col-md-3 mb-3">
                 <Link to={`/condominio/espacos/${props.id}`}>
                     <CardItem
                         title="Espaços"
@@ -15,7 +15,7 @@ const CardsDashboard = props => {
                     />
                 </Link>
             </div>
-            <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div className="col-md-3 mb-3">
                 <Link to={`/condominio/agendamentos/${props.id}`}>
                     <CardItem
                         title="Agendamentos"
@@ -24,21 +24,25 @@ const CardsDashboard = props => {
                     />
                 </Link>
             </div>
-            {/*<div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">*/}
-            {/*    <CardItem*/}
-            {/*        title="Cadastrar encomenda"*/}
-            {/*        icon="ni ni-paper-diploma text-lg opacity-10"*/}
-            {/*        iconContainerClass="bg-gradient-success shadow-success"*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div className="col-xl-3 col-sm-6">*/}
-            {/*    <CardItem*/}
-            {/*        title="Alugueis de apartamento"*/}
-            {/*        icon="ni ni-cart text-lg opacity-10"*/}
-            {/*        iconContainerClass="bg-gradient-warning shadow-warning"*/}
-            {/*    />*/}
-            {/*</div>*/}
 
+            <div className="col-md-3 mb-3">
+                <Link to={`/condominio/agendamentos/${props.id}`}>
+                    <CardItem
+                        title="Registrar encomenda"
+                        icon="ni ni-world text-lg opacity-10"
+                        iconContainerClass="bg-gradient-danger shadow-danger"
+                    />
+                </Link>
+            </div>
+            <div className="col-md-3 mb-3">
+                <Link to={`/condominio/agendamentos/${props.id}`}>
+                    <CardItem
+                        title="Agendamentos"
+                        icon="ni ni-world text-lg opacity-10"
+                        iconContainerClass="bg-gradient-danger shadow-danger"
+                    />
+                </Link>
+            </div>
         </div>
     );
 };

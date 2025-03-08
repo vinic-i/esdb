@@ -2,13 +2,12 @@ import React from 'react';
 
 const CondominioDetails = ({condominio}) => {
     return (
-        <div>
-            <h2>{condominio.nome}</h2>
-            <p><strong>Descrição:</strong> {condominio.descricao}</p>
-            <p><strong>Endereço:</strong> {condominio.endereco}</p>
-            <p><strong>Proprietário:</strong> {condominio.owner.nome}</p>
-            {/* Adicione outros detalhes conforme necessário */}
-        </div>
+        <>
+            <strong>{condominio.nome}</strong>
+            <p className='m-0'>{condominio.descricao}</p>
+            <p className='m-0'>{condominio.endereco}</p>
+            <p className='m-0'>Administrador: {condominio.owner.nome}</p>
+        </>
     );
 };
 

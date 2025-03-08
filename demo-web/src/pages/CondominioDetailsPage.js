@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
 import CondominioDetails from '../components/condominio/CondominioDetails';
 import CardsDashboard from "../components/dashboard/CardsDashboard";
-import { getCondominioById } from "../api/condominioApi";
+import {getCondominioById} from "../api/condominioApi";
+import CardItem from "../components/template/CardItem";
 
 const CondominioDetailsPage = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const [condominio, setCondominio] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -54,17 +55,19 @@ const CondominioDetailsPage = () => {
 
     return (
         <div className='row'>
-            <h3 className='text-white'>Detalhes do Condomínio:</h3>
+
             <div className="col-lg-12">
+                <CardsDashboard id={id}/>
+            </div>
+            <div className="col-lg-8">
                 <div className="card mb-3">
                     <div className="card-body">
                         {condominio ? <CondominioDetails condominio={condominio}/> : <p>Condomínio não encontrado.</p>}
                     </div>
                 </div>
             </div>
-            <CardsDashboard id={id} />
             <div className="col-lg-12">
-                <div className="card mt-3">
+                <div className=" mt-3">
                     <div className="card-header">
                         <div className="form-group">
                             {/* Select para escolher o bloco */}
@@ -82,9 +85,10 @@ const CondominioDetailsPage = () => {
                             <div className="row">
                                 {apartamentosFiltrados.map((ap) => (
                                     <div key={ap.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                                        <div className="card bg-gray-400">
+                                        <div className="card">
                                             <div className="card-body text-center">
-                                                <h5 className="card-title">Bloco - {blocoSelecionado}<br/>Apartamento {ap.numero}</h5>
+                                                <h5 className="card-title">Bloco
+                                                    - {blocoSelecionado}<br/>Apartamento {ap.numero}</h5>
                                                 {/* Você pode adicionar mais detalhes do apartamento aqui */}
                                             </div>
                                         </div>
