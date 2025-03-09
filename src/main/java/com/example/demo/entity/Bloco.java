@@ -18,7 +18,7 @@ public class Bloco {
     private String code;
 
     @OneToMany(mappedBy = "bloco", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Serializa a coleção de residências
+    @JsonManagedReference
     private Set<Residencia> residencias = new HashSet<>();
 
 
@@ -31,7 +31,7 @@ public class Bloco {
 
     @ManyToOne
     @JoinColumn(name = "condominio", nullable = false)
-    @JsonBackReference // Indica que este é o lado inverso da referência
+    @JsonBackReference
     private Condominio condominio;
 
     public Long getId() {

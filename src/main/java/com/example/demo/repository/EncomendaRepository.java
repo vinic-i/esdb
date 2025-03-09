@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EncomendaRepository extends JpaRepository<Encomenda, Long> {
-    // Você pode adicionar métodos personalizados aqui, se necessário
+
 }

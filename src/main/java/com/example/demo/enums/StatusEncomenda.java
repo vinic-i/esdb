@@ -1,8 +1,8 @@
 package com.example.demo.enums;
 
 public enum StatusEncomenda {
-    A_RETIRAR("A retirar"),  // Status quando a encomenda ainda precisa ser retirada
-    RETIRADO("Retirado");    // Status quando a encomenda já foi retirada
+    A_RETIRAR("A retirar"),
+    RETIRADO("Retirado");
 
     private final String descricao;
 

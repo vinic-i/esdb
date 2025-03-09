@@ -12,8 +12,6 @@ public class UsuarioDTO {
 
     private UserRole role;
 
-    // Getters e Setters
-
     public String getNome() {
         return nome;
     }

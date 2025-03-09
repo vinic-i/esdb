@@ -36,7 +36,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // Configuração do CORS diretamente no SecurityFilterChain
+
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
@@ -73,6 +73,10 @@ public class SecurityConfiguration {
 
                         // Permissões para /api/residencias
                         .requestMatchers(HttpMethod.GET, "/api/residencias").permitAll()
+
+                        // Permissões para /api/encomenda
+                        .requestMatchers(HttpMethod.GET, "/api/encomendas").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/encomendas").permitAll()
 
                         // Permissões para /api/reservas
                         .requestMatchers(HttpMethod.GET, "/api/reservas").permitAll()

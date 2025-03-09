@@ -11,7 +11,6 @@ public class EspacoDTO {
 
     private Long condominioId;
 
-    //Getters and Setters
     public String getNome() {
         return nome;
     }

@@ -9,13 +9,11 @@ const CondominioPage = () => {
     const { user } = useUser();
     const navigate = useNavigate();
 
-    // Verifica se o usuário já tem um condomínio
     useEffect(() => {
         const checkCondominio = async () => {
             try {
                 const response = await getCondominiosByOwner(user.id);
                 if (response.data.length > 0) {
-                    // Se tiver condomínio, redireciona para a página do primeiro condomínio
                     navigate(`/condominio/${response.data[0].id}`);
                 }
             } catch (error) {
@@ -35,7 +33,7 @@ const CondominioPage = () => {
     return (
         <div>
             {!user ? (
-                <p>Carregando...</p> // Ou outro tipo de mensagem até o usuário estar carregado
+                <p>Carregando...</p>
             ) : (
                 <div>
                     <h3 className="text-white">Cadastrar condomínio</h3>

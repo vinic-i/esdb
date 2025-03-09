@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
-    // Você pode adicionar métodos personalizados aqui, se necessário
     List<Reserva> findByEspacoIdAndDataReservaBetween(Long espacoId, LocalDateTime dataReservaInicio, LocalDateTime dataReservaFim);
 
 }

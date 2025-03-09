@@ -1,9 +1,12 @@
 package com.example.demo.entity;
 
 import com.example.demo.enums.StatusEncomenda;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,19 +23,37 @@ public class Encomenda {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    private Usuario usuarioDestinatario;
 
     @Column(name = "status", nullable = false)
-    private StatusEncomenda status; // Exemplos de valores: "disponível", "retirada"
+    private StatusEncomenda status;
+
+    @Column(name = "nome_retirada")
+    private String nomeRetirada;
+
+    @Column(name = "documento_retirada")
+    private String documentoRetirada;
+
+    @ManyToOne
+    @JoinColumn(name = "residencia_id")
+    @JsonManagedReference
+    private Residencia residencia;
 
     public Encomenda() {
     }
 
-    public Encomenda(String outroMorador, LocalDateTime dataChegada, Usuario usuario, StatusEncomenda status) {
+    public Encomenda(String outroMorador,
+                     LocalDateTime dataChegada,
+                     Usuario usuarioDestinatario,
+                     StatusEncomenda status,
+                     String nomeRetirada,
+                     String documentoRetirada) {
         this.outroMorador = outroMorador;
         this.dataChegada = dataChegada;
-        this.usuario = usuario;
+        this.usuarioDestinatario = usuarioDestinatario;
         this.status = status;
+        this.nomeRetirada = nomeRetirada;
+        this.documentoRetirada = documentoRetirada;
     }
 
     public Long getId() {
@@ -59,13 +80,14 @@ public class Encomenda {
         this.dataChegada = dataChegada;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getUsuarioDestinatario() {
+        return usuarioDestinatario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioDestinatario(Usuario usuarioDestinatario) {
+        this.usuarioDestinatario = usuarioDestinatario;
     }
+
 
     public StatusEncomenda getStatus() {
         return status;
@@ -73,5 +95,13 @@ public class Encomenda {
 
     public void setStatus(StatusEncomenda status) {
         this.status = status;
+    }
+
+    public Residencia getResidencia() {
+        return residencia;
+    }
+
+    public void setResidencia(Residencia residencia) {
+        this.residencia = residencia;
     }
 }

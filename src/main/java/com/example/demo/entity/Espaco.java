@@ -22,7 +22,7 @@ public class Espaco {
     private int capacidade;
 
     @Column(name = "disponibilidade", nullable = false)
-    private boolean disponibilidade; // true se disponível, false se não
+    private boolean disponibilidade;
 
     @Column(name = "data_registro", nullable = false)
     private LocalDateTime dataRegistro;
@@ -30,9 +30,9 @@ public class Espaco {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
-    @ManyToOne // Indica que muitos Espacos pertencem a um Condominio
+    @ManyToOne
     @JoinColumn(name = "condominio_id", nullable = false)
-    @JsonBackReference // Indica que este é o lado inverso da referência
+    @JsonBackReference
     private Condominio condominio;
 
     public Espaco() {
@@ -50,7 +50,6 @@ public class Espaco {
         this.condominio = condominio;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

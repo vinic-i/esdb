@@ -20,13 +20,16 @@ public class Residencia {
     @NotEmpty(message = "O número da residência é obrigatório.")
     private String numero;
 
+    @OneToMany(mappedBy = "residencia")
+    @JsonBackReference
+    private Set<Encomenda> encomendas = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bloco_id", nullable = false)
-    @JsonBackReference // Evita a serialização recursiva
-    private Bloco bloco; // Agora, estamos relacionando Residencia com Bloco através do id
+    @JsonBackReference
+    private Bloco bloco;
 
-    @Enumerated(EnumType.STRING) // Para armazenar como string no banco de dados
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
     private TipoResidencia tipo;
 
@@ -36,8 +39,8 @@ public class Residencia {
             joinColumns = @JoinColumn(name = "residencia_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    @JsonManagedReference // Indica que esta é a parte "gerenciada" da referência
-    private Set<Usuario> usuarios = new HashSet<>(); // Conjunto de usuários associados à residência
+    @JsonManagedReference
+    private Set<Usuario> usuarios = new HashSet<>();
 
     @Column(name = "data_registro", nullable = false)
     private LocalDateTime dataRegistro;
@@ -50,13 +53,13 @@ public class Residencia {
 
     public Residencia(String numero, Bloco bloco, TipoResidencia tipo) {
         this.numero = numero;
-        this.bloco = bloco; // Inicializando bloco
+        this.bloco = bloco;
         this.tipo = tipo;
         this.dataRegistro = LocalDateTime.now();
         this.dataAtualizacao = LocalDateTime.now();
     }
 
-    // Getters e Setters
+
 
     public Long getId() {
         return id;
@@ -75,11 +78,11 @@ public class Residencia {
     }
 
     public Bloco getBloco() {
-        return bloco; // Getter para bloco
+        return bloco;
     }
 
     public void setBloco(Bloco bloco) {
-        this.bloco = bloco; // Setter para bloco
+        this.bloco = bloco;
     }
 
     public TipoResidencia getTipo() {
@@ -91,21 +94,21 @@ public class Residencia {
     }
 
     public Set<Usuario> getUsuarios() {
-        return usuarios; // Getter para usuários
+        return usuarios;
     }
 
     public void setUsuarios(Set<Usuario> usuarios) {
-        this.usuarios = usuarios; // Setter para usuários
+        this.usuarios = usuarios;
     }
 
     public void addUsuario(Usuario usuario) {
-        this.usuarios.add(usuario); // Adiciona um usuário ao conjunto
-        usuario.getResidencias().add(this); // Adiciona esta residência ao conjunto de residências do usuário
+        this.usuarios.add(usuario);
+        usuario.getResidencias().add(this);
     }
 
     public void removeUsuario(Usuario usuario) {
-        this.usuarios.remove(usuario); // Remove um usuário do conjunto
-        usuario.getResidencias().remove(this); // Remove esta residência do conjunto de residências do usuário
+        this.usuarios.remove(usuario);
+        usuario.getResidencias().remove(this);
     }
 
     public LocalDateTime getDataRegistro() {
@@ -122,5 +125,13 @@ public class Residencia {
 
     public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public Set<Encomenda> getEncomendas() {
+        return encomendas;
+    }
+
+    public void setEncomendas(Set<Encomenda> encomendas) {
+        this.encomendas = encomendas;
     }
 }

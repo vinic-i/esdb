@@ -20,8 +20,6 @@ public class CondominioDTO {
     private List<Long> residenciaIds = new ArrayList<>();
     private List<Long> administradoreIds = new ArrayList<>();
 
-    // Getters e Setters
-
     public String getNome() {
         return nome;
     }

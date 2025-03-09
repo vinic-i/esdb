@@ -34,7 +34,7 @@ public class EspacoService {
     }
 
     public List<EspacoDisponibilidadeDTO> listarEspacosComReserva(Long condominioId, LocalDateTime dataReserva) {
-        List<Espaco> espacos = espacoRepository.findByCondominioId(condominioId);  // Lista de espaços do condomínio
+        List<Espaco> espacos = espacoRepository.findByCondominioId(condominioId);
         List<EspacoDisponibilidadeDTO> resultado = new ArrayList<>();
 
         LocalDateTime inicioDia = dataReserva.toLocalDate().atStartOfDay();
@@ -42,19 +42,19 @@ public class EspacoService {
 
         for (Espaco espaco : espacos) {
             List<Reserva> reservas = reservaRepository.findByEspacoIdAndDataReservaBetween(espaco.getId(), inicioDia, fimDia);
-            boolean temReserva = !reservas.isEmpty();  // Se houver qualquer reserva, o espaço tem reserva
-            String usuarioReserva = temReserva ? reservas.get(0).getUsuario().getNome() : null;  // Nome do usuário da primeira reserva
-            Long idReserva = temReserva ? reservas.get(0).getId() : null;  // ID da primeira reserva, se houver
+            boolean temReserva = !reservas.isEmpty();
+            String usuarioReserva = temReserva ? reservas.get(0).getUsuario().getNome() : null;
+            Long idReserva = temReserva ? reservas.get(0).getId() : null;
 
             EspacoDisponibilidadeDTO dto = new EspacoDisponibilidadeDTO();
             dto.setId(espaco.getId());
             dto.setNome(espaco.getNome());
             dto.setDescricao(espaco.getDescricao());
             dto.setCapacidade(espaco.getCapacidade());
-            dto.setDisponibilidade(temReserva ? false : true);  // Se tiver reserva, não está disponível
+            dto.setDisponibilidade(temReserva ? false : true);
             dto.setTemReserva(temReserva);
             dto.setUsuarioReserva(usuarioReserva);
-            dto.setIdReserva(idReserva);  // Adiciona o ID da reserva, se houver
+            dto.setIdReserva(idReserva);
 
             resultado.add(dto);
         }

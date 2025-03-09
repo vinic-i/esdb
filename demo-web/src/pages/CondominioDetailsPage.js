@@ -72,7 +72,7 @@ const CondominioDetailsPage = () => {
                 <div className="card mt-3">
                     <div className="card-header">
                         <div className="col-sm-4 col-6">
-                            <label className="form-label mt-4">I'm</label>
+                            <label className="form-label mt-4">Selecione o Bloco</label>
                             <div className="choices is-open" data-type="select-one" tabIndex="0" role="combobox"
                                  aria-autocomplete="list" aria-haspopup="true" aria-expanded="true"
                                  aria-activedescendant="choices--choices-gender-item-choice-1">
@@ -96,22 +96,22 @@ const CondominioDetailsPage = () => {
                             <div className="row">
                                 {apartamentosFiltrados.map((ap) => (
                                     <div key={ap.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                                        <div className="d-flex bg-gray-200">
-                                            <div className="d-flex flex-column p-3">
-                                                <h6 className="mb-3 text-sm">Bloco - {blocoSelecionado}</h6>
+                                        <div className="row bg-gray-200 p-3 g-1">
+                                            <div className="col-lg-6">
+                                                <h6 className="mb-0 text-sm">Bloco - {blocoSelecionado}</h6>
                                                 <h6 className="mb-3 text-sm">Apartamento {ap.numero}</h6>
                                             </div>
-                                            <div className="ms-auto text-end">
+                                            <div className="col-lg-6 ms-auto text-end">
 
                                                 {/* Modal de Cadastro de Encomenda */}
                                                     <CadastroEncomendaModal
                                                         apId={ap.id} // Passe o id da residência aqui
                                                     />
 
-                                                <a className="btn btn-link text-dark px-3 mb-0" href="javascript:;">
-                                                    <i className="fas fa-pencil-alt text-dark me-2"
-                                                       aria-hidden="true"></i>Mensagem
-                                                </a>
+                                                {/*<a className="btn btn-link text-dark px-3 mb-0" href="javascript:;">*/}
+                                                {/*    <i className="fas fa-pencil-alt text-dark me-2"*/}
+                                                {/*       aria-hidden="true"></i>Mensagem*/}
+                                                {/*</a>*/}
                                             </div>
                                         </div>
                                     </div>

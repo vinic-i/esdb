@@ -22,7 +22,7 @@ public class Notificacao {
     private Usuario usuario;
 
     @Column(name = "status", nullable = false)
-    private boolean status; // true para notificação lida, false para não lida
+    private boolean status;
 
     public Notificacao() {
     }

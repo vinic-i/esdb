@@ -23,7 +23,7 @@ public class Reserva {
     private Espaco espaco;
 
     @Column(name = "status", nullable = false)
-    private String status; // Exemplos de valores: "confirmada", "cancelada"
+    private String status;
 
     public Reserva() {
     }

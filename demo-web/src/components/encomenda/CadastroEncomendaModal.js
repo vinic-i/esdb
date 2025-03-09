@@ -9,15 +9,18 @@ const CadastroEncomendaModal = ({apId}) => {
     const [usuarios, setUsuarios] = useState([]);
     const [loadingUsuarios, setLoadingUsuarios] = useState(true);
     const [error, setError] = useState(null);
-    const [isOutroMoradorChecked, setIsOutroMoradorChecked] = useState(false); // Para controlar a mudança do campo de usuário
+    const [isOutroMoradorChecked, setIsOutroMoradorChecked] = useState(false);
+    const [status, setStatus] = useState('A_RETIRAR');
+    const [nomeRetirado, setNomeRetirado] = useState('');
+    const [documentoRetirado, setDocumentoRetirado] = useState('');
 
-    // Função para buscar os usuários da residência
+
     const fetchUsuarios = async (residenciaId) => {
         try {
             setLoadingUsuarios(true);
-            const response = await getMoradorResidencia(residenciaId); // Chamando o método getMoradorResidencia
-            setUsuarios(response.data); // A resposta vem no formato { data: [...] }
-            if (response.data.length > 0) setUsuarioId(response.data[0].id); // Definindo o primeiro usuário como o padrão
+            const response = await getMoradorResidencia(residenciaId);
+            setUsuarios(response.data);
+            if (response.data.length > 0) setUsuarioId(response.data[0].id);
         } catch (error) {
             console.error("Erro ao buscar usuários", error);
             setError("Erro ao carregar os usuários.");
@@ -34,16 +37,18 @@ const CadastroEncomendaModal = ({apId}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Criação do objeto de encomenda
         const encomendaData = {
             outroMorador,
             dataChegada,
-            usuario: isOutroMoradorChecked ? null : {id: usuarioId},  // Se outro morador estiver selecionado, o usuário será null
-            status: 'A_RETIRAR', // Ou outro valor de status desejado
+            usuario: isOutroMoradorChecked ? null : {id: usuarioId},
+            status: status,
+            nomeRetirado: status === 'RETIRADO' ? nomeRetirado : null,
+            documentoRetirado: status === 'RETIRADO' ? documentoRetirado : null,
+            residencia: {id: apId}
         };
 
         try {
-            // Salvando a encomenda com a função da API
+
             await createEncomenda(encomendaData);
             alert('Encomenda cadastrada com sucesso!');
         } catch (error) {
@@ -52,15 +57,11 @@ const CadastroEncomendaModal = ({apId}) => {
         }
     };
 
-    useEffect(() => {
-        fetchUsuarios(apId); // Buscando os usuários quando o componente é montado
-    }, [apId]);
-
     return (
         <>
             <button type="button"
                     onClick={() => fetchUsuarios(apId)}
-                    className="btn btn-link text-danger text-gradient px-3 mb-0"
+                    className="btn btn-link text-danger text-gradient p-0 px-3 mb-0"
                     data-bs-toggle="modal" data-bs-target={`#exampleModal-${apId}`}>
                 <i className="far fa-trash-alt me-2"></i>Encomenda
             </button>
@@ -81,11 +82,11 @@ const CadastroEncomendaModal = ({apId}) => {
                                 {/* Campo Outro morador */}
                                 {(usuarios.length === 0 || isOutroMoradorChecked) && (
                                     <div className="mb-3">
-                                        <label htmlFor="outroMorador" className="form-label">Outro morador</label>
+                                        <label htmlFor="outroMorador" className="form-label">Destinatário</label>
                                         <input type="text" className="form-control" id="outroMorador"
                                                value={outroMorador}
                                                onChange={(e) => setOutroMorador(e.target.value)}
-                                               />
+                                        />
                                     </div>
                                 )}
 
@@ -93,7 +94,7 @@ const CadastroEncomendaModal = ({apId}) => {
                                 {/* Se houver usuários, mostrar o select, caso contrário, mostrar o campo de "Outro Morador" */}
                                 {usuarios.length > 0 && !isOutroMoradorChecked && (
                                     <div className="mb-3">
-                                        <label htmlFor="usuario" className="form-label">Selecionar Usuário</label>
+                                        <label htmlFor="usuario" className="form-label">Selecionar morador</label>
                                         {loadingUsuarios ? (
                                             <p>Carregando usuários...</p>
                                         ) : (
@@ -121,10 +122,10 @@ const CadastroEncomendaModal = ({apId}) => {
                                     </div>
                                 )}
 
-                                {/* Campo Data Chegada */}
+                                {/* Campo Data Chegada*/}
                                 <div className="mb-3">
                                     <label htmlFor="dataChegada" className="form-label">Data de Chegada</label>
-                                    <input type="datetime-local" className="form-control" id="dataChegada"
+                                    <input type="date" className="form-control" id="dataChegada"
                                            value={dataChegada}
                                            onChange={(e) => setDataChegada(e.target.value)} required/>
                                 </div>
@@ -133,7 +134,37 @@ const CadastroEncomendaModal = ({apId}) => {
                                 <button type="button" className="btn btn-link p-0 px-1" onClick={handleHoje}>Chegou
                                     hoje
                                 </button>
-                                <div className="modal-footer">
+
+                                {/* Campo para selecionar o status */}
+                                <div className="mb-3">
+                                    <label htmlFor="status" className="form-label">Status da Encomenda</label>
+                                    <select className="form-select" id="status" value={status}
+                                            onChange={(e) => setStatus(e.target.value)} required>
+                                        <option value="A_RETIRAR">A Retirar</option>
+                                        <option value="RETIRADO">Retirado</option>
+                                    </select>
+                                </div>
+
+                                {/* Campos de nome e documento de retirada, apenas se o status for "RETIRADO" */}
+                                {status === 'RETIRADO' && (
+                                    <>
+                                        <div className="mb-3">
+                                            <label htmlFor="nomeRetirado" className="form-label">Nome de quem
+                                                retirou</label>
+                                            <input type="text" className="form-control" id="nomeRetirado"
+                                                   value={nomeRetirado}
+                                                   onChange={(e) => setNomeRetirado(e.target.value)} required/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="documentoRetirado" className="form-label">Documento de quem
+                                                retirou</label>
+                                            <input type="text" className="form-control" id="documentoRetirado"
+                                                   value={documentoRetirado}
+                                                   onChange={(e) => setDocumentoRetirado(e.target.value)} required/>
+                                        </div>
+                                    </>
+                                )}
+                                <div className="modal-footer border-0">
                                     <button type="button" className="btn bg-gradient-secondary"
                                             data-bs-dismiss="modal">Fechar
                                     </button>

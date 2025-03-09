@@ -19,7 +19,6 @@ public class CondominioController {
     @Autowired
     private CondominioService condominioService;
 
-    // Criar um novo condomínio
     @PostMapping
     public ResponseEntity<?> createCondominio(@Valid @RequestBody CondominioDTO condominioDTO) {
         try {
@@ -30,7 +29,6 @@ public class CondominioController {
         }
     }
 
-    // Listar todos os condomínios
     @GetMapping
     public ResponseEntity<List<Condominio>> getAllCondominios() {
         List<Condominio> condominios = condominioService.getAllCondominios();
@@ -43,21 +41,18 @@ public class CondominioController {
         return ResponseEntity.ok(condominios);
     }
 
-    // Obter um condomínio por ID
     @GetMapping("/{id}")
     public ResponseEntity<Condominio> getCondominioById(@PathVariable Long id) {
         Optional<Condominio> condominio = condominioService.getCondominioById(id);
         return condominio.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    //Lista os espaços de um condomínio
     @GetMapping("/{condominioId}/espacos")
     public ResponseEntity<List<Espaco>> getEspacosByCondominioId(@PathVariable Long condominioId) {
         List<Espaco> espacos = condominioService.getEspacosByCondominioId(condominioId);
         return ResponseEntity.ok(espacos);
     }
 
-    // Atualizar um condomínio
     @PutMapping("/{id}/{idUser}")
     public ResponseEntity<?> updateCondominio(@PathVariable Long id, @RequestBody CondominioDTO updatedCondominio, @PathVariable Long idUser) {
         try {
@@ -68,7 +63,6 @@ public class CondominioController {
         }
     }
 
-    // Deletar um condomínio
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCondominio(@PathVariable Long id) {
         condominioService.deleteCondominio(id);

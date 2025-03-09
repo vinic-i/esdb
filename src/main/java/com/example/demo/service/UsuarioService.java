@@ -37,7 +37,7 @@ public class UsuarioService {
         } else if (email != null) {
             return List.of((Usuario) usuarioRepository.findByEmail(email));
         } else {
-            return listarTodos(); // Retorna todos se nenhum filtro for fornecido
+            return listarTodos();
         }
     }
 

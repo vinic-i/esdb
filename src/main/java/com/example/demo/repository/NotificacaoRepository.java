@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NotificacaoRepository extends JpaRepository<Notificacao, Long> {
-    // Você pode adicionar métodos personalizados aqui, se necessário
+
 }

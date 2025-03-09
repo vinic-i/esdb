@@ -37,67 +37,54 @@ public class CondominioService {
         newCondominio.setNome(condominioDTO.getNome());
         newCondominio.setEndereco(condominioDTO.getEndereco());
         newCondominio.setDescricao(condominioDTO.getDescricao());
-        newCondominio.setOwner(owner); // Aqui setamos o objeto de usuário
+        newCondominio.setOwner(owner);
 
         List<Residencia> residencias = residenciaRepository.findAllById(condominioDTO.getResidenciaIds());
         List<Usuario> administradores = usuarioRepository.findAllById(condominioDTO.getAdministradoreIds());
         newCondominio.setAdministradores(new HashSet<>(administradores));
 
-        return condominioRepository.save(newCondominio); // Salvando o novo condomínio
+        return condominioRepository.save(newCondominio);
     }
 
     public List<Condominio> getCondominiosByOwner(Long ownerId) {
         return condominioRepository.findByOwnerId(ownerId);
     }
 
-    // Atualizar um condomínio
     public Condominio updateCondominio(Long id, CondominioDTO condominioDTO, Long userId) {
-        // Buscar o condomínio existente pelo ID
         Condominio existingCondominio = condominioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Condomínio não encontrado com o id: " + id));
 
-        // Verificar se o usuário é o owner ou um dos administradores
         if (!existingCondominio.getOwner().getId().equals(userId) &&
                 existingCondominio.getAdministradores().stream().noneMatch(admin -> admin.getId().equals(userId))) {
             throw new RuntimeException("Usuário não possui permissão para alterar este condomínio");
         }
 
-        // Atualizar os dados do condomínio com as informações do DTO
         existingCondominio.setNome(condominioDTO.getNome());
         existingCondominio.setEndereco(condominioDTO.getEndereco());
         existingCondominio.setDescricao(condominioDTO.getDescricao());
 
-        // Atualizar o proprietário se necessário
         Usuario owner = usuarioRepository.findById(condominioDTO.getOwnerId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + condominioDTO.getOwnerId()));
         existingCondominio.setOwner(owner);
 
-        // Atualizar as residências associadas ao condomínio
-        // Limpa as residências existentes
-        // Adiciona as novas residências
         List<Residencia> residencias = residenciaRepository.findAllById(condominioDTO.getResidenciaIds());
 
-        // Atualizar a lista de administradores
-        existingCondominio.getAdministradores().clear(); // Limpa os administradores existentes
+        existingCondominio.getAdministradores().clear();
         List<Usuario> administradores = usuarioRepository.findAllById(condominioDTO.getAdministradoreIds());
         existingCondominio.getAdministradores().addAll(administradores);
-        // Salvar as mudanças no banco de dados
+
         return condominioRepository.save(existingCondominio);
     }
 
-    // Listar todos os condomínios
+
     public List<Condominio> getAllCondominios() {
         return condominioRepository.findAll();
     }
 
-    // Obter um condomínio por ID
     public Optional<Condominio> getCondominioById(Long id) {
         return condominioRepository.findById(id);
     }
 
-
-
-    // Deletar um condomínio
     public void deleteCondominio(Long id) {
         condominioRepository.deleteById(id);
     }
