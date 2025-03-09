@@ -21,7 +21,7 @@ public class Residencia {
     private String numero;
 
     @OneToMany(mappedBy = "residencia")
-    @JsonBackReference
+    @JsonBackReference(value = "residencia-encomenda")
     private Set<Encomenda> encomendas = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,7 +39,7 @@ public class Residencia {
             joinColumns = @JoinColumn(name = "residencia_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    @JsonManagedReference
+    @JsonManagedReference(value = "residencia-usuarios-managed") // Nome exclusivo para o lado gerenciado
     private Set<Usuario> usuarios = new HashSet<>();
 
     @Column(name = "data_registro", nullable = false)

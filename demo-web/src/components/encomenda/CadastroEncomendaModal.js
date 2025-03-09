@@ -30,8 +30,8 @@ const CadastroEncomendaModal = ({apId}) => {
     };
 
     const handleHoje = () => {
-        const hoje = new Date().toISOString().slice(0, 16);
-        setDataChegada(hoje);
+        const hoje = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD
+        setDataChegada(hoje);  // Define a data para o campo de data de chegada
     };
 
     const handleSubmit = async (e) => {
@@ -40,11 +40,11 @@ const CadastroEncomendaModal = ({apId}) => {
         const encomendaData = {
             outroMorador,
             dataChegada,
-            usuario: isOutroMoradorChecked ? null : {id: usuarioId},
+            usuarioId: isOutroMoradorChecked ? null : usuarioId,
             status: status,
-            nomeRetirado: status === 'RETIRADO' ? nomeRetirado : null,
-            documentoRetirado: status === 'RETIRADO' ? documentoRetirado : null,
-            residencia: {id: apId}
+            nomeRetirada: status === 'RETIRADO' ? nomeRetirado : '',
+            documentoRetirada: status === 'RETIRADO' ? documentoRetirado : '',
+            residenciaId:  apId
         };
 
         try {

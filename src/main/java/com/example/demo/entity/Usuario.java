@@ -44,7 +44,7 @@ public class Usuario implements UserDetails {
     private UserRole role;
 
     @ManyToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "residencia-usuarios-back") // Nome exclusivo para o lado de referência
     private Set<Residencia> residencias = new HashSet<>();
 
     @Column(name = "notificacoes", nullable = false)

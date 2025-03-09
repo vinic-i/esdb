@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Encomenda;
+import com.example.demo.forms.EncomendaDTO;
 import com.example.demo.service.EncomendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +33,8 @@ public class EncomendaController {
     }
 
     @PostMapping
-    public Encomenda salvar(@RequestBody Encomenda encomenda) {
-        return encomendaService.salvar(encomenda);
+    public Encomenda salvar(@RequestBody EncomendaDTO encomendaDTO) {
+        return encomendaService.salvar(encomendaDTO);  // Agora passando o DTO para o service
     }
 
     @DeleteMapping("/{id}")

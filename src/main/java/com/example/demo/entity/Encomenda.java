@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import com.example.demo.enums.StatusEncomenda;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -26,7 +25,7 @@ public class Encomenda {
     private Usuario usuarioDestinatario;
 
     @Column(name = "status", nullable = false)
-    private StatusEncomenda status;
+    private String status;
 
     @Column(name = "nome_retirada")
     private String nomeRetirada;
@@ -36,7 +35,7 @@ public class Encomenda {
 
     @ManyToOne
     @JoinColumn(name = "residencia_id")
-    @JsonManagedReference
+    @JsonManagedReference(value = "residencia-encomenda")
     private Residencia residencia;
 
     public Encomenda() {
@@ -45,7 +44,7 @@ public class Encomenda {
     public Encomenda(String outroMorador,
                      LocalDateTime dataChegada,
                      Usuario usuarioDestinatario,
-                     StatusEncomenda status,
+                     String status,
                      String nomeRetirada,
                      String documentoRetirada) {
         this.outroMorador = outroMorador;
@@ -89,11 +88,11 @@ public class Encomenda {
     }
 
 
-    public StatusEncomenda getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusEncomenda status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -103,5 +102,21 @@ public class Encomenda {
 
     public void setResidencia(Residencia residencia) {
         this.residencia = residencia;
+    }
+
+    public String getNomeRetirada() {
+        return nomeRetirada;
+    }
+
+    public void setNomeRetirada(String nomeRetirada) {
+        this.nomeRetirada = nomeRetirada;
+    }
+
+    public String getDocumentoRetirada() {
+        return documentoRetirada;
+    }
+
+    public void setDocumentoRetirada(String documentoRetirada) {
+        this.documentoRetirada = documentoRetirada;
     }
 }
