@@ -1,23 +1,27 @@
-import axios from 'axios';
+import {api} from './axios'
 
 const API_URL = 'http://localhost:8080/api/residencias';
 
 export const getAllResidencias = () => {
-    return axios.get(API_URL);
+    return api.get(API_URL);
+};
+
+export const getMoradorResidencia = (residenciaId) => {
+    return api.get(`${API_URL}/${residenciaId}/usuarios`);
 };
 
 export const getResidenciaById = (id) => {
-    return axios.get(`${API_URL}/${id}`);
+    return api.get(`${API_URL}/${id}`);
 };
 
 export const createResidencia = (residencia) => {
-    return axios.post(API_URL, residencia);
+    return api.post(API_URL, residencia);
 };
 
 export const deleteResidencia = (id) => {
-    return axios.delete(`${API_URL}/${id}`);
+    return api.delete(`${API_URL}/${id}`);
 };
 
 export const atualizarResidencia = (id, residencia) => {
-    return axios.put(`${API_URL}/${id}`, residencia);
+    return api.put(`${API_URL}/${id}`, residencia);
 };

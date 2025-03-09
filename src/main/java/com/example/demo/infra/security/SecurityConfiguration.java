@@ -71,6 +71,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/api/usuarios").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/search").permitAll()
 
+                        // Permissões para /api/residencias
+                        .requestMatchers(HttpMethod.GET, "/api/residencias").permitAll()
 
                         // Permissões para /api/reservas
                         .requestMatchers(HttpMethod.GET, "/api/reservas").permitAll()
