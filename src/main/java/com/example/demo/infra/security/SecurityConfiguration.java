@@ -94,6 +94,7 @@ public class SecurityConfiguration {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("http://localhost:3000"); // Define a origem permitida
         corsConfiguration.addAllowedOrigin("http://localhost:9090"); // Define a origem permitida
+        corsConfiguration.addAllowedOrigin("https://condominio-config.netlify.app/"); // Define a origem permitida
         corsConfiguration.addAllowedMethod("*"); // Permite todos os métodos (GET, POST, etc.)
         corsConfiguration.addAllowedHeader("*"); // Permite todos os cabeçalhos
         corsConfiguration.setAllowCredentials(true); // Permite credenciais como cookies
