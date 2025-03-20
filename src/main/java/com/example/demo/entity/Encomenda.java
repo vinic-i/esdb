@@ -17,11 +17,13 @@ public class Encomenda {
 
     private String outroMorador;
 
+    private String blocoInfo;
+
     @NotNull(message = "A data de chegada é obrigatória.")
     private LocalDateTime dataChegada;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuarioDestinatario;
 
     @Column(name = "status", nullable = false)
@@ -45,12 +47,14 @@ public class Encomenda {
                      LocalDateTime dataChegada,
                      Usuario usuarioDestinatario,
                      String status,
+                     String blocoInfo,
                      String nomeRetirada,
                      String documentoRetirada) {
         this.outroMorador = outroMorador;
         this.dataChegada = dataChegada;
         this.usuarioDestinatario = usuarioDestinatario;
         this.status = status;
+        this.blocoInfo = blocoInfo;
         this.nomeRetirada = nomeRetirada;
         this.documentoRetirada = documentoRetirada;
     }
@@ -94,6 +98,14 @@ public class Encomenda {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getBlocoInfo() {
+        return blocoInfo;
+    }
+
+    public void setBlocoInfo(String blocoInfo) {
+        this.blocoInfo = blocoInfo;
     }
 
     public Residencia getResidencia() {

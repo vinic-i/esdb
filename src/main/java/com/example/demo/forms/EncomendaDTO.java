@@ -9,6 +9,7 @@ public class EncomendaDTO {
     private LocalDate dataChegada;
     private Long usuarioId;
     private String status;
+    private String blocoInfo;
     private String nomeRetirada;
     private String documentoRetirada;
     private Long residenciaId;
@@ -44,6 +45,14 @@ public class EncomendaDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getBlocoInfo() {
+        return blocoInfo;
+    }
+
+    public void setBlocoInfo(String blocoInfo) {
+        this.blocoInfo = blocoInfo;
     }
 
     public String getNomeRetirada() {

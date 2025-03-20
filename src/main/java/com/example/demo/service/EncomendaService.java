@@ -38,9 +38,12 @@ public class EncomendaService {
 
     public Encomenda salvar(EncomendaDTO encomendaDTO) {
 
-        // Buscar o usuário pelo ID
-        Usuario usuario = usuarioRepository.findById(encomendaDTO.getUsuarioId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + encomendaDTO.getUsuarioId()));
+        // Buscar o usuário pelo ID, se fornecido
+        Usuario usuario = null;
+        if (encomendaDTO.getUsuarioId() != null) {
+            usuario = usuarioRepository.findById(encomendaDTO.getUsuarioId())
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + encomendaDTO.getUsuarioId()));
+        }
 
         // Buscar a residência pelo ID (se fornecido)
         Residencia residencia = null;
@@ -53,14 +56,15 @@ public class EncomendaService {
         Encomenda encomenda = new Encomenda();
         encomenda.setOutroMorador(encomendaDTO.getOutroMorador());
         encomenda.setDataChegada(encomendaDTO.getDataChegada().atStartOfDay());
+        encomenda.setBlocoInfo(encomendaDTO.getBlocoInfo());
 
         try {
-            // Tentando converter a string para o enum
             encomenda.setStatus(encomendaDTO.getStatus());
         } catch (IllegalArgumentException e) {
             throw new RuntimeException("Status de encomenda inválido: " + encomendaDTO.getStatus());
         }
 
+        // Se não houver usuario, será null. Caso contrário, será o usuario encontrado
         encomenda.setUsuarioDestinatario(usuario);
         encomenda.setResidencia(residencia);
 
